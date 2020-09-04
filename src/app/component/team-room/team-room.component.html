@@ -1,0 +1,24 @@
+<p>team-room works!</p>
+
+<!--<mat-spinner></mat-spinner>-->
+
+<h1> room Data: {{roomData}}</h1>
+
+<h1>Players:</h1>
+
+<div *ngFor="let players of roomTeam">
+ <p> Name: {{players.summonerName}}</p>
+  <p> Role : {{players.role || players.teamRoles[0]}}</p>
+  <p> Rank: {{players.rank || players.teamRank}}</p>
+</div>
+
+<h1>Chat:</h1>
+
+<div *ngFor="let message of messageArray">
+<p> mensagem: {{message.message}} </p>
+</div>
+
+<label>
+  <input matInput placeholder="Placeholder" (change)="updateChatMessage($event)">
+</label>
+

@@ -1,0 +1,80 @@
+<button mat-raised-button (click)="startWaiting()"> Waiting</button>
+<button mat-raised-button> Search</button>
+<button mat-raised-button> Delete team</button>
+<button mat-raised-button (click)="stopWaiting()"> Stop waiting</button>
+
+<p *ngIf="waitingStatus">Bola Verde</p>
+<p *ngIf="!waitingStatus">Bola Vermelha</p>
+
+
+
+
+<mat-form-field appearance="fill">
+  <mat-label>Game Mode:</mat-label>
+  <mat-select (selectionChange)="updateMatchType($event)">
+    <mat-option value="duo">Rank Solo duo</mat-option>
+    <mat-option value="flex3">Rank Flex 3</mat-option>
+    <mat-option value="flex5">Rank Flex 5</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+  <mat-label>Duo Lane preference</mat-label>
+  <mat-select>
+    <mat-option value="top"> top</mat-option>
+    <mat-option value="jungle"> jungle</mat-option>
+    <mat-option value="mid"> mid</mat-option>
+    <mat-option value="bot"> bot</mat-option>
+    <mat-option value="support"> support</mat-option>
+    <mat-option value="fill"> fill</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<button mat-raised-button (click)="startFastSearch(matchType)"> Fast Search</button>
+
+
+
+
+<div *ngFor="let players of finalTeam">
+  <p>{{players.summonerName}}</p>
+
+
+  <img src="../../../assets/Images/{{players.rank || players.teamRank}}.png" height="149" width="130"/>
+  <p>{{players.teamRank || players.rank}}</p>
+
+
+</div>
+
+<app-team-room></app-team-room>
+
+
+
+
+
+<div>
+  <h1>Zona de testes:</h1>
+<br>
+
+
+  <label>
+    <input matInput placeholder="Placeholder" (change)="testeDeVer($event)">
+  </label>
+
+
+
+  <h1 *ngIf="playerSelectedStatusVar">Selecionado!!!!!</h1>
+
+
+
+
+
+  <button mat-raised-button (click)="startCountdown(60)">start counting</button>
+
+
+
+</div>
+
+
+
+
