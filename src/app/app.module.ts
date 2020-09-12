@@ -22,6 +22,16 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {MatTableModule} from '@angular/material/table';
 import { TeamRoomComponent } from './component/team-room/team-room.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ProfileComponent } from './pages/profile/profile.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CommentsComponent } from './pages/comments/comments.component';
+import { GuideComponent } from './pages/guide/guide.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {SidenavService} from './services/sidenav.service';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -47,25 +57,34 @@ const firebaseConfig = {
     SearchPlayerComponent,
     WaitingComponent,
     TeamRoomComponent,
+    ProfileComponent,
+    CommentsComponent,
+    GuideComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    AppRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatIconModule,
-    MatInputModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule,
-    AngularFireStorageModule,
-    AngularFirestoreModule,
-    MatTableModule,
-    MatProgressSpinnerModule
-  ],
-  providers: [AddPlayerComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        AppRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatIconModule,
+        MatInputModule,
+        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireAuthModule,
+        AngularFireStorageModule,
+        AngularFirestoreModule,
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        MatToolbarModule,
+        MatGridListModule,
+        MatSidenavModule,
+        MatButtonToggleModule,
+        MatDialogModule
+    ],
+  providers: [AddPlayerComponent, SidenavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

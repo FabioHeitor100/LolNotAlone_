@@ -1,0 +1,71 @@
+button{
+  background-color: #61c4d1;
+  color: black;
+}
+
+mat-button-toggle{
+  background-color: #61c4d1;
+  color: black;
+}
+
+
+mat-toolbar{
+  top: 0;
+  position: fixed;
+  overflow: hidden;
+}
+mat-sidenav-container{
+  width: 100%;
+  height: 100%;
+}
+
+mat-sidenav-content{
+  width: 100%;
+  height: 100%;
+}
+
+mat-sidenav{
+  width: 15%;
+  background-color: black;
+
+}
+
+img{
+  width: 90%;
+}
+
+button{
+  width: 70%;
+  margin-top: 30px;
+  font-size: 25px;
+  font-family: beaufort, serif;
+
+
+}
+
+#sidenav1{
+  width: 100%;
+  height: 100%;
+  text-align: center
+}
+
+#version{
+  width: 100%;
+  bottom: 0;
+  color: white;
+
+  inline-size: -webkit-fill-available;
+}
+
+p{
+  color: white;
+  position: absolute;
+  bottom: 0;
+  inline-size: -webkit-fill-available;
+}
+
+
+
+
+
+

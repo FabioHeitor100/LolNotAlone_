@@ -1,0 +1,87 @@
+body{
+  width: 100%;
+
+
+  background-image:url("../../../assets/Images/background.png");
+  background-size: 100% 100%;
+
+
+}
+button{
+  font-family: beaufort, serif;
+}
+#addPlayerZone{
+
+  width: 100%;
+  height: 80%;
+  border: black solid 1px;
+
+  display: flex;
+  justify-content: center;
+
+
+
+
+}
+
+#playerZone{
+
+  position: relative;
+
+
+  float: left;
+  border: black solid 1px;
+
+  display: flex;
+  justify-content: center;
+}
+
+#buttonZone{
+  border: black solid 3px;
+  position: absolute;
+  top: 20%;
+  vertical-align: middle;
+  z-index: 10;
+
+  width: 100%;
+  height: 50%;
+  display: block;
+  justify-content: center;
+
+
+}
+
+#bottomZone{
+
+
+}
+
+#backButton{
+  width: 10%;
+  float: left;
+}
+
+#addPlayerButton{
+
+  float: left;
+
+}
+
+#waitingRoomButton{
+
+}
+
+#bottomZone{
+
+}
+
+
+.buttonsAdd{
+  width: 70%;
+  margin-left: 16%;
+}
+
+
+
+
+

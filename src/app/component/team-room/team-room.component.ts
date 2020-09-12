@@ -15,6 +15,7 @@ export class TeamRoomComponent implements OnDestroy {
   message;
   messageArray;
   player;
+  teamZone;
 
   roomChatData: AngularFireObject<any>;
 
@@ -34,7 +35,8 @@ export class TeamRoomComponent implements OnDestroy {
 
   createChatData(){
     console.log("VER AGORA!!!!!:",this.roomTeam[0].summonerName );
-    this.roomChatData = this.af.object("/rooms/" + this.roomTeam[0].summonerName +"/chat");
+    console.log("VER TAMBEm!!!", this.teamZone);
+    this.roomChatData = this.af.object("/Zone/" + this.teamZone + "/rooms/" + this.roomTeam[0].summonerName + '/chat');
     this.roomChatData.snapshotChanges().subscribe(action => {
       console.log(action.type);
       console.log(action.key);
@@ -55,7 +57,8 @@ export class TeamRoomComponent implements OnDestroy {
 
   sendChatMessage(){
     console.log("Player a enviar mensaagem:", this.player);
-    firebase.database().ref("/rooms/" + this.roomTeam[0].summonerName +"/chat").push({
+    console.log("ZONA QUE ENVIA MENSAGEM:", this.teamZone);
+    firebase.database().ref("/Zone/" + this.teamZone + "/rooms/" + this.roomTeam[0].summonerName +"/chat").push({
       player: this.player,
       message: this.message});
 

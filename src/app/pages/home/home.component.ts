@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
+import {AngularFireDatabase} from '@angular/fire/database';
+import {SidenavService} from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +9,62 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  playerData;
+  playerList;
+  playerWaiting =0;
+  playersListed =0;
+  sidenavStatus = false;
 
-  constructor() { }
+
+  constructor(public af: AngularFireDatabase,
+              private sidenav: SidenavService) { }
 
   ngOnInit(): void {
+    this.af.object("/Zone").query.once('value').then(data => {
+      this.playerData = Object.keys(data.val()).map(key => data.val()[key]);
+      console.log("playerLIst:", this.playerData);
+      console.log(this.playerData.length);
+
+      for(let zone of this.playerData){
+        let players = Object.values(zone.list);
+        console.log("test", players);
+        console.log(players.length);
+
+        this.playersListed = this.playersListed + players.length;
+        // const zonePlayers = zone.length;
+        // console.log(zonePlayers);
+        //
+        //
+        //
+        // // for ( let player of zone.list){
+        // //   console.log(player);
+        // // }
+
+        if( zone.waiting){
+          console.log("tem");
+          let waitingPlayers = Object.values(zone.waiting);
+          console.log(waitingPlayers);
+          this.playerWaiting = this.playerWaiting + waitingPlayers.length;
+        }
+
+        //this.playersListed = this.playersListed + 1;
+      }
+    });
+
   }
+
+  toggleRightSidenav() {
+
+    if(this.sidenavStatus === true){
+      this.sidenav.close();
+      this.sidenavStatus = false;
+    }
+
+    else if (this.sidenavStatus === false){
+      this.sidenav.open();
+      this.sidenavStatus = true;
+    }
+
+}
 
 }

@@ -1,0 +1,79 @@
+body{
+  background-image:url("../../../assets/Images/background.png");
+  background-size: 100% 100%;
+
+  font-family: beaufort,'arial', sans-serif;
+
+
+display: block;
+  justify-content: center;
+
+
+
+}
+
+
+mat-expansion-panel{
+  margin-top: 10px;
+
+}
+
+mat-expansion-panel-header{
+  border: black 2px solid;
+}
+
+
+
+#header{
+
+}
+
+#playerZone{
+  display: flex;
+  justify-content: center;
+}
+
+#player{
+  float: left;
+}
+
+
+
+#buttonZone1{
+  border: black 2px solid;
+  height: 10%;
+  width: 100%;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  float: right;
+
+}
+
+#backButton{
+
+}
+
+
+#searchButton1{
+  border: black 2px solid;
+}
+
+#zoneButton1{
+
+}
+#searchZone{
+  border: black 2px solid;
+  width: 100%;
+  top: 30%;
+  height: 50%;
+
+  display: flex;
+  justify-content: center;
+
+}
+
+#panel{
+ width: 70%;
+}

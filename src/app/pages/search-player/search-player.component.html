@@ -1,46 +1,220 @@
-<p>search-player works!</p>
-<!--<p>{{test[1][1].summonerName}}</p>-->
-<button mat-raised-button> search</button>
+<body>
 
-<!--<table mat-table [dataSource]="teamsList">-->
+<div id="buttonZone1">
 
-<!--  <ng-container matColumnDef="position">-->
-<!--    <th mat-header-cell *matHeaderCellDef> No. </th>-->
-<!--    <td mat-cell *matCellDef="let element"> {{element.summonerName}} </td>-->
-<!--  </ng-container>-->
+  <div id="backButton">
 
+    <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>
 
-
-<!--  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-<!--  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-<!--</table>-->
-
-
-
-
-
-
-
-<ng-container *ngFor="let arr of test">
-  <p>Leader: {{arr[0].summonerName}}</p>
-  <p>Number of Players: {{arr.length}}</p>
-  <p>Rank: {{arr[0].rank}}</p>
-
-  <p>waiting {{arr[0].waiting}}</p>
-
-
-  <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>
-  <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>
-
-  <div *ngFor="let ola of arr">
-<!--    <p> {{ ola?.summonerName }}</p>-->
   </div>
-</ng-container>
 
-<div *ngFor="let ola of test">
+  <div id="zoneButton1">
 
+    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">
+      <mat-label>Zone</mat-label>
+      <mat-select (selectionChange)="updatePlayerZone($event)">
+        <mat-option value="br">BR</mat-option>
+        <mat-option value="eune">EUNE</mat-option>
+        <mat-option value="euw">EUW</mat-option>
+        <mat-option value="jp">JP</mat-option>
+        <mat-option value="kr">KR</mat-option>
+        <mat-option value="lan">LAN</mat-option>
+        <mat-option value="las">LAS</mat-option>
+        <mat-option value="na">NA</mat-option>
+        <mat-option value="oce">OCE</mat-option>
+        <mat-option value="ru">RU</mat-option>
+        <mat-option value="tr">TR</mat-option>
+      </mat-select>
+    </mat-form-field>
 
+  </div>
 
-  <p> {{test[ola]}}</p>
+  <div id="searchButton1">
+
+    <button mat-raised-button (click)="listSearch()" style="font-family: beaufort, serif;"> search</button>
+  </div>
+
 
 </div>
+
+
+<div id="searchZone">
+
+  <div id="panel">
+
+    <mat-card style="font-family: beaufort, serif;">Simple card</mat-card>
+
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let arr of test; let i=index" style="font-family: beaufort, serif;">
+      <mat-expansion-panel-header style="font-family: beaufort, serif;">
+
+        <div id="header">
+
+          <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>
+          <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>
+          {{arr[0].summonerName}}
+
+          {{arr.length}}
+
+          <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>
+        </div>
+
+      </mat-expansion-panel-header>
+
+
+
+      <div id="playerZone">
+
+
+        <div id="player" *ngFor="let player of arr">
+
+
+
+          <img src="../../../assets/Images/banner.png" height="400" width="200"/>
+          {{player.summonerName}}
+
+          <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+
+  </div>
+
+</div>
+
+</body>
+
+
+<!--&lt;!&ndash;<p>{{test[1][1].summonerName}}</p>&ndash;&gt;-->
+<!--<button mat-raised-button (click)="listSearch()"> search</button>-->
+
+<!--<button mat-raised-button (click)="gotoBackPage()"> Back</button>-->
+
+<!--<p>olaaaaaaaaaaaa</p>-->
+
+
+
+<!--<mat-form-field appearance="fill">-->
+<!--  <mat-label>Zone</mat-label>-->
+<!--  <mat-select (selectionChange)="updatePlayerZone($event)">-->
+<!--    <mat-option value="br">BR</mat-option>-->
+<!--    <mat-option value="eune">EUNE</mat-option>-->
+<!--    <mat-option value="euw">EUW</mat-option>-->
+<!--    <mat-option value="jp">JP</mat-option>-->
+<!--    <mat-option value="kr">KR</mat-option>-->
+<!--    <mat-option value="lan">LAN</mat-option>-->
+<!--    <mat-option value="las">LAS</mat-option>-->
+<!--    <mat-option value="na">NA</mat-option>-->
+<!--    <mat-option value="oce">OCE</mat-option>-->
+<!--    <mat-option value="ru">RU</mat-option>-->
+<!--    <mat-option value="tr">TR</mat-option>-->
+<!--  </mat-select>-->
+<!--</mat-form-field>-->
+
+<!--&lt;!&ndash;<table mat-table [dataSource]="teamsList">&ndash;&gt;-->
+
+<!--&lt;!&ndash;  <ng-container matColumnDef="position">&ndash;&gt;-->
+<!--&lt;!&ndash;    <th mat-header-cell *matHeaderCellDef> No. </th>&ndash;&gt;-->
+<!--&lt;!&ndash;    <td mat-cell *matCellDef="let element"> {{element.summonerName}} </td>&ndash;&gt;-->
+<!--&lt;!&ndash;  </ng-container>&ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash;  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>&ndash;&gt;-->
+<!--&lt;!&ndash;  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>&ndash;&gt;-->
+<!--&lt;!&ndash;</table>&ndash;&gt;-->
+
+
+<!--<mat-accordion>-->
+<!--  <mat-expansion-panel *ngFor="let arr of test; let i=index" >-->
+<!--    <mat-expansion-panel-header >-->
+
+<!--      <div id="header">-->
+
+<!--      <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>-->
+<!--      <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>-->
+<!--      {{arr[0].summonerName}}-->
+
+<!--      {{arr.length}}-->
+
+<!--      <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>-->
+<!--      </div>-->
+
+<!--    </mat-expansion-panel-header>-->
+
+
+
+<!--    <div id="playerZone">-->
+
+
+<!--     <div id="player" *ngFor="let player of arr">-->
+
+
+
+<!--       <img src="../../../assets/Images/banner.png" height="400" width="200"/>-->
+<!--       {{player.summonerName}}-->
+
+<!--       <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>-->
+<!--     </div>-->
+
+<!--    </div>-->
+
+<!--  </mat-expansion-panel>-->
+
+<!--</mat-accordion>-->
+
+
+
+
+
+
+
+<!--<ng-container *ngFor="let arr of test">-->
+
+
+
+<!--  <mat-accordion>-->
+<!--    <mat-expansion-panel hideToggle>-->
+<!--      <mat-expansion-panel-header>-->
+<!--        <mat-panel-title>-->
+<!--          This is the expansion title-->
+<!--        </mat-panel-title>-->
+<!--        <mat-panel-description>-->
+<!--          This is a summary of the content-->
+<!--        </mat-panel-description>-->
+<!--      </mat-expansion-panel-header>-->
+<!--      <p>This is the primary content of the panel.</p>-->
+<!--    </mat-expansion-panel>-->
+
+<!--  </mat-accordion>-->
+
+
+
+<!--  <p>Leader: {{arr[0].summonerName}}</p>-->
+<!--  <p>Number of Players: {{arr.length}}</p>-->
+<!--  <p>Rank: {{arr[0].rank}}</p>-->
+
+<!--  <p>waiting {{arr[0].waiting}}</p>-->
+
+
+<!--  <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>-->
+<!--  <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>-->
+
+<!--  <div *ngFor="let ola of arr">-->
+<!--&lt;!&ndash;    <p> {{ ola?.summonerName }}</p>&ndash;&gt;-->
+<!--  </div>-->
+<!--</ng-container>-->
+
+<!--<div *ngFor="let ola of test">-->
+
+
+
+<!--  <p> {{test[ola]}}</p>-->
+
+<!--</div>-->
+

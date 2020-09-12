@@ -1,79 +1,208 @@
-<button mat-raised-button (click)="startWaiting()"> Waiting</button>
-<button mat-raised-button> Search</button>
-<button mat-raised-button> Delete team</button>
-<button mat-raised-button (click)="stopWaiting()"> Stop waiting</button>
+<body>
 
-<p *ngIf="waitingStatus">Bola Verde</p>
-<p *ngIf="!waitingStatus">Bola Vermelha</p>
+<div id="teamZone">
+
+<!--  colocar aqui os jogadores da equipa antes do search-->
 
 
+  <div *ngIf="actualTeamVisible" id="actualTeamZone">
+  <div id="playerOfTeam" *ngFor="let player of actualTeam">
 
+    <div id="banner">
+      <img src="../../../assets/Images/banner{{player.rank || player.teamRank}}.png" height="600" width="250"/>
+    </div>
 
-<mat-form-field appearance="fill">
-  <mat-label>Game Mode:</mat-label>
-  <mat-select (selectionChange)="updateMatchType($event)">
-    <mat-option value="duo">Rank Solo duo</mat-option>
-    <mat-option value="flex3">Rank Flex 3</mat-option>
-    <mat-option value="flex5">Rank Flex 5</mat-option>
-  </mat-select>
-</mat-form-field>
+    <div id="rankZone">
+      <img src="../../../assets/Images/{{player.rank || player.teamRank}}.png" height="149" width="130"/>
+    </div>
 
-<mat-form-field appearance="fill">
-  <mat-label>Duo Lane preference</mat-label>
-  <mat-select>
-    <mat-option value="top"> top</mat-option>
-    <mat-option value="jungle"> jungle</mat-option>
-    <mat-option value="mid"> mid</mat-option>
-    <mat-option value="bot"> bot</mat-option>
-    <mat-option value="support"> support</mat-option>
-    <mat-option value="fill"> fill</mat-option>
-  </mat-select>
-</mat-form-field>
+    <div id="summonerName">
+      <p style="font-family: beaufort, serif;">{{player.summonerName}}</p>
+    </div>
 
+    <div id="playerRole">
+      <img src="../../../assets/Images/TopLane_icon.png" height="100" width="100"/>
+    </div>
 
-<button mat-raised-button (click)="startFastSearch(matchType)"> Fast Search</button>
+  </div>
+
+  </div>
+
+  <div id="playerOfTeam" *ngFor="let players of finalTeam" >
 
 
 
+     <div id="banner">
+    <img src="../../../assets/Images/banner{{players.rank || players.teamRank}}.png" height="600" width="250"/>
+     </div>
 
-<div *ngFor="let players of finalTeam">
-  <p>{{players.summonerName}}</p>
+    <div id="rankZone">
+      <img src="../../../assets/Images/{{players.rank || players.teamRank}}.png" height="149" width="130"/>
+    </div>
+
+    <div id="summonerName">
+      <p style="font-family: beaufort, serif;">{{players.summonerName}}</p>
+    </div>
+
+    <div id="playerRole">
+      <img src="../../../assets/Images/TopLane_icon.png" height="100" width="100"/>
+    </div>
 
 
-  <img src="../../../assets/Images/{{players.rank || players.teamRank}}.png" height="149" width="130"/>
-  <p>{{players.teamRank || players.rank}}</p>
+  </div>
+
+</div>
+
+<div id="controlZone">
+
+  <img src="../../../assets/Images/banner.png" height="700" width="300"/>
+
+  <div id="waitingButton">
+  <button mat-raised-button (click)="startWaiting()"> Waiting</button>
+
+</div>
+
+<div id="stopWaitingButton">
+  <button mat-raised-button (click)="stopWaiting()"> Stop waiting</button>
+</div>
+
+  <div id="gameModeButton">
+    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">
+      <mat-label>Game Mode:</mat-label>
+      <mat-select (selectionChange)="updateMatchType($event)" style="font-family: beaufort, serif;">
+        <mat-option style="font-family: beaufort, serif;" value="duo" *ngIf="duoVisible">Rank Solo duo</mat-option>
+        <mat-option value="flex3" *ngIf="trioVisible">Rank Flex 3</mat-option>
+        <mat-option value="flex5" *ngIf="flexVisible">Rank Flex 5</mat-option>
+        <mat-option value="5v5" *ngIf="fiveVsFive">5 v 5</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div id="preferenceButton">
+    <mat-form-field appearance="fill" *ngIf="duoVisible" style="font-family: beaufort, serif;">
+      <mat-label>Duo Lane preference</mat-label>
+      <mat-select style="font-family: beaufort, serif;">
+        <mat-option value="top"> top</mat-option>
+        <mat-option value="jungle"> jungle</mat-option>
+        <mat-option value="mid"> mid</mat-option>
+        <mat-option value="bot"> bot</mat-option>
+        <mat-option value="support"> support</mat-option>
+        <mat-option value="fill"> fill</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div id="fastSearchButton">
+    <button mat-raised-button (click)="startFastSearch(matchType)"> Fast Search</button>
+  </div>
+
+  <div id="ball">
+
+    <img *ngIf="waitingStatus" src="../../../assets/Images/greenlight.png" height="90" width="90"/>
+
+    <img *ngIf="!waitingStatus" src="../../../assets/Images/redlight.png" height="90" width="90"/>
+
+  </div>
+
+
+
 
 
 </div>
+
+
+<div id="backButton">
+
+  <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>
+
+</div>
+
 
 <app-team-room></app-team-room>
-
-
-
-
-
-<div>
-  <h1>Zona de testes:</h1>
-<br>
-
-
-  <label>
-    <input matInput placeholder="Placeholder" (change)="testeDeVer($event)">
-  </label>
-
-
-
-  <h1 *ngIf="playerSelectedStatusVar">Selecionado!!!!!</h1>
-
-
-
-
-
-  <button mat-raised-button (click)="startCountdown(60)">start counting</button>
-
-
-
+<h1 mat-dialog-title>NO PLAYERS FOUND!!</h1>
+<div mat-dialog-content>
+  <p>Wait a little longer or go to the search area to see if there any players waiting</p>
 </div>
+
+<h1>Team Zone: {{teamZone}}</h1>
+
+</body>
+
+<!--<button mat-raised-button (click)="gotoBackPage()"> Back</button>-->
+
+<!--<button mat-raised-button (click)="startWaiting()"> Waiting</button>-->
+<!--<button mat-raised-button> Search</button>-->
+<!--<button mat-raised-button> Delete team</button>-->
+<!--<button mat-raised-button (click)="stopWaiting()"> Stop waiting</button>-->
+
+
+
+
+
+
+<!--<mat-form-field appearance="fill">-->
+<!--  <mat-label>Game Mode:</mat-label>-->
+<!--  <mat-select (selectionChange)="updateMatchType($event)">-->
+<!--    <mat-option value="duo">Rank Solo duo</mat-option>-->
+<!--    <mat-option value="flex3">Rank Flex 3</mat-option>-->
+<!--    <mat-option value="flex5">Rank Flex 5</mat-option>-->
+<!--  </mat-select>-->
+<!--</mat-form-field>-->
+
+<!--<mat-form-field appearance="fill">-->
+<!--  <mat-label>Duo Lane preference</mat-label>-->
+<!--  <mat-select>-->
+<!--    <mat-option value="top"> top</mat-option>-->
+<!--    <mat-option value="jungle"> jungle</mat-option>-->
+<!--    <mat-option value="mid"> mid</mat-option>-->
+<!--    <mat-option value="bot"> bot</mat-option>-->
+<!--    <mat-option value="support"> support</mat-option>-->
+<!--    <mat-option value="fill"> fill</mat-option>-->
+<!--  </mat-select>-->
+<!--</mat-form-field>-->
+
+
+<!--<button mat-raised-button (click)="startFastSearch(matchType)"> Fast Search</button>-->
+
+
+
+
+<!--<div *ngFor="let players of finalTeam">-->
+<!--  <p>{{players.summonerName}}</p>-->
+
+
+<!--  <img src="../../../assets/Images/{{players.rank || players.teamRank}}.png" height="149" width="130"/>-->
+<!--  <p>{{players.teamRank || players.rank}}</p>-->
+
+
+<!--</div>-->
+
+<!--<app-team-room></app-team-room>-->
+
+
+
+
+
+<!--<div>-->
+<!--  <h1>Zona de testes:</h1>-->
+<!--<br>-->
+
+
+<!--  <label>-->
+<!--    <input matInput placeholder="Placeholder" (change)="testeDeVer($event)">-->
+<!--  </label>-->
+
+
+
+<!--  <h1 *ngIf="playerSelectedStatusVar">Selecionado!!!!!</h1>-->
+
+
+
+
+
+<!--  <button mat-raised-button (click)="startCountdown(60)">start counting</button>-->
+
+
+
+<!--</div>-->
 
 
 

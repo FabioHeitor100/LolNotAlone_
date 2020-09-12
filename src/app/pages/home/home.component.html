@@ -1,4 +1,48 @@
-<button mat-raised-button routerLink="/addPlayer"> icon da cruz</button>
-<button mat-raised-button routerLink="/search"> icon do search</button>
+
+<!--<mat-toolbar style="background-color: black; color: white; top: 0; width: 100%" >-->
+
+<!--  <button mat-raised-button routerLink="/profile" class="buttons"> About me</button>-->
+
+<!--  <h1 style="margin: auto;">LoL Not Alone</h1>-->
+
+<!--  <button mat-raised-button onclick="window.location.href='https://paypal.me/FabioHeitor?locale.x=en_US';"> Donate </button>-->
+
+<!--</mat-toolbar>-->
+
+
+<body>
+
+
+
+
+<div id="addButton">
+ <img routerLink="/addPlayer" src="../../../assets/Images/AddPlayer.jpg" height="200" width="200"/>
+</div>
+<div id="searchButton">
+<img routerLink="/search" src="../../../assets/Images/searchIcon.png" height="200" width="200"/>
+</div>
+
+<div id="playersCount">
+
+  <p>Players Waiting:  {{playerWaiting}} </p>
+  <p>Listed Players: {{playersListed}}</p>
+
+</div>
+
+<div id="menuButton">
+
+  <img src="../../../assets/Images/menu.png" height="200" width="200" (click)="toggleRightSidenav()"/>
+
+</div>
+
+<!--<div id="fhLogo">-->
+
+<!--  <img src="../../../assets/Images/FH_logo.png" height="233" width="216"/>-->
+<!--</div>-->
+
+
+</body>
+
+
 
 

@@ -8,6 +8,8 @@ export class TeamFunctionsService {
 
 
   actualTeam;
+  teamZone;
+  rolesDefault = ["top","jungle","mid","bot","support","fill"];
 
   constructor(public af: AngularFireDatabase) { }
 
@@ -98,11 +100,23 @@ export class TeamFunctionsService {
   }
 
 
-  getAllPlayersWaiting(){
-      return this.af.object("/waiting").query.once('value');
+  getAllPlayersWaiting(zone,matchType){
+      return this.af.object("/Zone/" + zone +"/waiting/" + matchType).query.once('value');
   }
 
 
+  getMissingRoles(roles){
+    console.log("TEAM ROLES!!!!!!!!!!!!!", roles);
+   let newRoles = this.rolesDefault;
+    for (let role of roles){
+      console.log("ROLE A VER;", role);
+      newRoles = newRoles.filter(data => data != role );
+      console.log("ROLEEEEEES:", newRoles);
+    }
+
+    return newRoles;
+
+  }
 
 
 

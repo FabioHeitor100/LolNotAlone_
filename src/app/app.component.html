@@ -1,3 +1,57 @@
-<p>ola</p>
+<body>
 
-<router-outlet></router-outlet>
+
+<!--<mat-toolbar style=" position: fixed;background-color: black; color: white">-->
+
+<!--  <button mat-raised-button routerLink="/profile" class="buttons"> About me</button>-->
+
+<!--  <h1 style="margin: auto;">LoL Not Alone</h1>-->
+
+<!--  <button mat-raised-button onclick="window.location.href='https://paypal.me/FabioHeitor?locale.x=en_US';"> Donate </button>-->
+
+<!--</mat-toolbar>-->
+
+
+
+<mat-sidenav-container #sidenav class="example-container">
+  <mat-sidenav mode="side" >
+    <div id="sidenav1">
+      <img src="../assets/Images/logoSite.png"/>
+      <button mat-raised-button>About Me</button>
+      <button mat-raised-button>Home</button>
+      <button mat-raised-button>Add Player</button>
+      <button mat-raised-button>Search</button>
+      <button mat-raised-button>Donate</button>
+
+
+
+        <img style="margin-top: 20px" src="../../../assets/Images/FH_logo.png" />
+
+
+        <p>Version 1.0</p>
+
+    </div>
+  </mat-sidenav>
+
+
+
+
+
+
+
+
+
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+
+
+
+</body>

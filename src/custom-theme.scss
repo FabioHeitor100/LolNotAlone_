@@ -12,9 +12,10 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$LolFinder-primary: mat-palette($mat-indigo);
+$LolFinder-primary: mat-palette($mat-indigo, A700);
 $LolFinder-accent: mat-palette($mat-pink, A200, A100, A400);
-
+$LolFinder-blue: mat-palette($mat-light-blue);
+$LolFinder-blue2: mat-palette($mat-cyan);
 // The warn palette is optional (defaults to red).
 $LolFinder-warn: mat-palette($mat-red);
 
@@ -22,9 +23,11 @@ $LolFinder-warn: mat-palette($mat-red);
 // theming systems such as "color" or "typography".
 $LolFinder-theme: mat-light-theme((
   color: (
-    primary: $LolFinder-primary,
+    primary: $LolFinder-blue2,
     accent: $LolFinder-accent,
     warn: $LolFinder-warn,
+
+
   )
 ));
 
@@ -32,4 +35,5 @@ $LolFinder-theme: mat-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($LolFinder-theme);
+
 
