@@ -16,16 +16,18 @@
 <mat-sidenav-container #sidenav class="example-container">
   <mat-sidenav mode="side" >
     <div id="sidenav1">
-      <img src="../assets/Images/logoSite.png"/>
-      <button mat-raised-button>About Me</button>
-      <button mat-raised-button>Home</button>
-      <button mat-raised-button>Add Player</button>
-      <button mat-raised-button>Search</button>
-      <button mat-raised-button>Donate</button>
+      <img style="margin-top: 20px" src="../../../assets/Images/FH_logo.png" />
+
+      <button mat-raised-button routerLink="/guide" >Guide</button>
+      <button mat-raised-button routerLink="/profile">About Me</button>
+      <button mat-raised-button routerLink="/home">Home</button>
+      <button mat-raised-button routerLink="/addPlayer" >Add Player</button>
+      <button mat-raised-button routerLink="/search" >Search</button>
+      <button mat-raised-button onclick="window.location.href='https://paypal.me/FabioHeitor?locale.x=en_US';">Donate</button>
 
 
 
-        <img style="margin-top: 20px" src="../../../assets/Images/FH_logo.png" />
+
 
 
         <p>Version 1.0</p>

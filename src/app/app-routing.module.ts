@@ -6,6 +6,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {WaitingComponent} from './pages/waiting/waiting.component';
 import {SearchPlayerComponent} from './pages/search-player/search-player.component';
 import {ProfileComponent} from './pages/profile/profile.component';
+import {GuideComponent} from './pages/guide/guide.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,7 +14,9 @@ const routes: Routes = [
   { path: 'addPlayer', component: AddPlayerComponent },
   { path: 'waiting', component: WaitingComponent },
   { path: 'search', component: SearchPlayerComponent },
-  { path: 'profile', component: ProfileComponent }
+  { path: 'profile', component: ProfileComponent },
+  { path: 'guide', component: GuideComponent }
+
 
 ];
 

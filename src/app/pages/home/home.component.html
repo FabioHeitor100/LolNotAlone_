@@ -1,44 +1,133 @@
-
-<!--<mat-toolbar style="background-color: black; color: white; top: 0; width: 100%" >-->
-
-<!--  <button mat-raised-button routerLink="/profile" class="buttons"> About me</button>-->
-
-<!--  <h1 style="margin: auto;">LoL Not Alone</h1>-->
-
-<!--  <button mat-raised-button onclick="window.location.href='https://paypal.me/FabioHeitor?locale.x=en_US';"> Donate </button>-->
-
-<!--</mat-toolbar>-->
-
-
 <body>
 
-
-
-
-<div id="addButton">
- <img routerLink="/addPlayer" src="../../../assets/Images/AddPlayer.jpg" height="200" width="200"/>
-</div>
-<div id="searchButton">
-<img routerLink="/search" src="../../../assets/Images/searchIcon.png" height="200" width="200"/>
-</div>
-
-<div id="playersCount">
-
-  <p>Players Waiting:  {{playerWaiting}} </p>
-  <p>Listed Players: {{playersListed}}</p>
-
+<div class="container-fluid d-flex vh-100 flex-column">
+  <div class="row" style="text-align: center;">
+    <div class="col-md-1 col-4">
+      <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+    </div>
+  <div class="col-md-10 col-4">
+  </div>
+  <div class="col-md-1 col-4">
+    <img id="helpIcon" routerLink="/guide" onmouseover="this.src='../../../assets/Images/home/helpIconHover.png'" src="/assets/Images/home/helpIcon.png" onmouseout="this.src='/assets/Images/home/helpIcon.png'">
+  </div>
 </div>
 
-<div id="menuButton">
+  <div class="row row align-items-center fill-height" style="height: auto;justify-content: center;" >
+    <div class= "col-md-2 align-self-center justify-content-center" style="height: auto; text-align: center">
 
-  <img src="../../../assets/Images/menu.png" height="200" width="200" (click)="toggleRightSidenav()"/>
+      <img id="logo" src="/assets/Images/home/Logo.png">
+    </div>
+
+
+
+  </div>
+
+
+  <div class="row align-items-center justify-content-around" style="color: white;text-align: center; font-size: x-large;">
+    <div class="col-md-3 col-5 order-3 order-md-1">
+       <img id="addButton"  routerLink="/addPlayer" onmouseover="this.src='../../../assets/Images/generic/addIcon_hover.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />
+    </div>
+    <div class="col-md-2 col-5 order-1 order-md-2">
+      <p>Players Waiting:  {{playerWaiting}} </p>
+    </div>
+    <div class="col-md-2 col-5 order-2 order-md-3">
+      <p>Listed Players: {{playersListed}}</p>
+    </div>
+    <div class="col-md-3 col-5 order-4 order-md-4">
+      <img id="searchButton" routerLink="/search" onmouseover="this.src='../../../assets/Images/generic/searchIcon_hover.png'" src="../../../assets/Images/generic/searchIcon.png" onmouseout="this.src='/assets/Images/generic/searchIcon.png'" />
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 
-<!--<div id="fhLogo">-->
 
-<!--  <img src="../../../assets/Images/FH_logo.png" height="233" width="216"/>-->
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="upperZone">-->
+<!--  <div id="menuButtonZone">-->
+
+<!--    <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">-->
+<!--  </div>-->
+<!--  <div id="logoZone">-->
+
+<!--    <img id="logo" src="/assets/Images/home/Logo.png">-->
+
+
+<!--  </div>-->
+
+<!--  <div id="menuButtonZoneClone">-->
+<!--    <img id="helpIcon" routerLink="/guide" onmouseover="this.src='../../../assets/Images/home/helpIconHover.png'" src="/assets/Images/home/helpIcon.png" onmouseout="this.src='/assets/Images/home/helpIcon.png'">-->
+<!--  </div>-->
 <!--</div>-->
+
+
+
+<!--<div id="buttonZone">-->
+
+
+
+
+<!--  <img id="addButton"  routerLink="/addPlayer" onmouseover="this.src='../../../assets/Images/generic/addIcon_hover.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />-->
+
+<!--  <p>Players Waiting:  {{playerWaiting}} </p>-->
+<!--  <p>Listed Players: {{playersListed}}</p>-->
+
+<!--  <img id="searchButton" routerLink="/search" onmouseover="this.src='../../../assets/Images/generic/searchIcon_hover.png'" src="../../../assets/Images/generic/searchIcon.png" onmouseout="this.src='/assets/Images/generic/searchIcon.png'" />-->
+
+
+<!--</div>-->
+
+
+
+
+
+
+<!--<div id="addButton">-->
+<!-- <img routerLink="/addPlayer" src="../../../assets/Images/AddPlayer.jpg" height="200" width="200"/>-->
+<!--</div>-->
+<!--<div id="searchButton">-->
+<!--<img routerLink="/search" src="../../../assets/Images/searchIcon.png" height="200" width="200"/>-->
+<!--</div>-->
+
+<!--<div id="playersCount">-->
+
+<!--  <p>Players Waiting:  {{playerWaiting}} </p>-->
+<!--  <p>Listed Players: {{playersListed}}</p>-->
+
+<!--</div>-->
+
+<!--<div id="menuButton">-->
+
+<!--  <img onmouseover="this.src='../../../assets/Images/menuIcon_hover.png';" onmouseout="this.src='../../../assets/Images/menu.png';" src="../../../assets/Images/menu.png" height="200" width="200" (click)="toggleRightSidenav()"/>-->
+
+<!--</div>-->
+
+<!--&lt;!&ndash;<div id="fhLogo">&ndash;&gt;-->
+
+<!--&lt;!&ndash;  <img src="../../../assets/Images/FH_logo.png" height="233" width="216"/>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
 
 
 </body>

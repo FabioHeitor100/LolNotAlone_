@@ -1,85 +1,556 @@
 body{
   width: 100%;
-
-
-  background-image:url("../../../assets/Images/background.png");
-  background-size: 100% 100%;
-
-
-}
-button{
-  font-family: beaufort, serif;
-}
-#addPlayerZone{
-
-  width: 100%;
-  height: 80%;
-  border: black solid 1px;
+  height: 100%;
+  background-image:url("/assets/Images/addPlayer/background1.jpg");
+  background-position: center;
+  /*background-size: 100% 100%;*/
+  background-size: cover;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
+.container-fluid{
+  height: 100%;
+}
 
-
+div{
 
 }
 
-#playerZone{
-
-  position: relative;
-
-
-  float: left;
-  border: black solid 1px;
-
-  display: flex;
-  justify-content: center;
-}
-
-#buttonZone{
-  border: black solid 3px;
-  position: absolute;
-  top: 20%;
-  vertical-align: middle;
-  z-index: 10;
-
+#menuIcon{
   width: 100%;
-  height: 50%;
-  display: block;
-  justify-content: center;
-
-
+  height: auto;
+  max-width: 100px;
 }
 
-#bottomZone{
+#menuCol{
+  max-width: 100px;
+}
 
+.banner{
+  width: 100%;
+  height: auto;
+}
 
+#bannerCol{
+  max-width: 300px ;
+}
+
+#bannerZone{
+  width: 100%;
+  height: auto;
+}
+
+.fill-height {
+  flex: 1;
 }
 
 #backButton{
-  width: 10%;
-  float: left;
+  width: 100%;
+  height: auto;
 }
 
-#addPlayerButton{
-
-  float: left;
-
-}
-
-#waitingRoomButton{
+#waitingButton{
+  width: 100%;
+  height: auto;
 
 }
 
-#bottomZone{
-
+#addButton{
+  width: 100%;
+  height: auto;
 }
 
-
-.buttonsAdd{
-  width: 70%;
-  margin-left: 16%;
+#zoneButton{
+  width: 100%;
+  height: auto;
 }
+
+#buttonZone{
+  width: 100%;
+  height: 75%;
+}
+
+#deleteIcon{
+  width: 50px;
+  height: 50px;
+}
+
+/*mat-form-field{*/
+/*text-align: center;*/
+/*}*/
+
+/*mat-option{*/
+/*  text-align: center;*/
+/*}*/
+
+/*mat-option img{*/
+/*  vertical-align: text-bottom;*/
+/*}*/
+
+
+
+
+
+
+
+/*#upperZone1{*/
+/*  width: 100%;*/
+/*  height: 660px;*/
+/*  border: yellow 2px solid;*/
+/*  display: flex;*/
+/*}*/
+/*#menuButtonZone{*/
+/*  height: 100%;*/
+/*  width: 100px;*/
+/*  border: yellow 2px solid;*/
+/*}*/
+
+/*#menuIcon{*/
+/*  width: 100px;*/
+/*  height: 100px;*/
+/*}*/
+
+/*#menuButtonZoneClone1{*/
+/*  height: 100%;*/
+/*  width: 100px;*/
+/*  border: yellow 2px solid;*/
+/*  margin-left: auto;*/
+/*}*/
+
+/*#playerZone{*/
+/*  border: yellow 2px solid;*/
+/*  width: 100%;*/
+/*  height: 660px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*#bannerZone{*/
+/*  border: yellow 2px solid;*/
+/*  width: 310px;*/
+/*  height: 660px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*.banner{*/
+/*  width: 300px;*/
+/*  height: 660px;*/
+/*  position: absolute;*/
+
+/*}*/
+
+/*#buttonBannerZone{*/
+/*  width: 310px;*/
+/*  height: 670px;*/
+/*  border: yellow 2px solid;*/
+/*  position: absolute;*/
+/*  text-align: center;*/
+/*  padding-top: 100px;*/
+
+/*}*/
+
+/*#deleteIcon{*/
+/*  width: 100%;*/
+/*}*/
+
+/*#deleteIcon{*/
+/*  width: 50px;*/
+/*  height: 50px;*/
+/*}*/
+/*#zoneButtonZone{*/
+/*  width: 100%;*/
+/*  border: yellow 2px solid;*/
+/*  height: 50px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*::ng-deep mat-form-field .mat-form-field-flex { background: #fff}*/
+
+
+/*#addButtonZone{*/
+/*  width: 100%;*/
+/*  border: yellow 2px solid;*/
+/*  height: 100%;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*#addButton1{*/
+/*  width: 100px;*/
+/*  height: 100px;*/
+/*  align-self: center;*/
+/*}*/
+
+/*#waitingButtonZone{*/
+/*  width: 100%;*/
+/*  border: yellow 2px solid;*/
+/*  height: 70px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*#waitingButton{*/
+/*  height: 50px;*/
+/*  width: 260px;*/
+/*  font-size: 20px;*/
+/*  font-family: beaufort, serif;*/
+/*}*/
+
+/*#bottomZone{*/
+/*  width: 100%;*/
+/*  border: yellow 2px solid;*/
+/*  height: 70px;*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*#backbuttonZone{*/
+/*  height: 100%;*/
+/*  width: 200px;*/
+/*  border: yellow 2px solid;*/
+/*  align-self: center;*/
+
+/*}*/
+
+/*#backbuttonZoneClone{*/
+/*  height: 100%;*/
+/*  width: 200px;*/
+/*  border: yellow 2px solid;*/
+/*  margin-left: auto;*/
+/*}*/
+
+/*#backButton{*/
+/*  width: 100px;*/
+/*  height: 70px;*/
+
+/*}*/
+
+/*.select-btn{*/
+/*  height: 50px;*/
+/*  width: 260px;*/
+/*}*/
+
+
+
+/*@media screen and (max-width: 899px){*/
+/*body{*/
+/*  background-image:url("/assets/Images/addPlayer/viewNot.png");*/
+/*}*/
+
+
+/*  #upperZone1{*/
+/*    display: none;*/
+/*  }*/
+/*  #menuButtonZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #menuIcon{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #menuButtonZoneClone1{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #playerZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #bannerZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  .banner{*/
+/*    display: none;*/
+
+/*  }*/
+
+/*  #buttonBannerZone{*/
+/*    display: none;*/
+
+/*  }*/
+
+/*  #deleteIcon{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #deleteIcon{*/
+/*    display: none;*/
+/*  }*/
+/*  #zoneButtonZone{*/
+/*    display: none;*/
+/*  }*/
+
+
+
+/*  #addButtonZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #addButton1{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #waitingButtonZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #waitingButton{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #bottomZone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #backbuttonZone{*/
+/*    display: none;*/
+
+/*  }*/
+
+/*  #backbuttonZoneClone{*/
+/*    display: none;*/
+/*  }*/
+
+/*  #backButton{*/
+/*   display: none;*/
+
+/*  }*/
+
+
+/*}*/
+
+/*@media screen and (min-width: 900px) and (max-width: 1600px){*/
+/*  #upperZone1{*/
+/*    width: 100%;*/
+/*    height: 500px;*/
+/*    border: yellow 2px solid;*/
+/*    display: flex;*/
+/*  }*/
+/*  #menuButtonZone{*/
+/*    height: 100%;*/
+/*    width: 70px;*/
+/*    border: yellow 2px solid;*/
+/*  }*/
+
+/*  #menuIcon{*/
+/*    width: 70px;*/
+/*    height: 70px;*/
+/*  }*/
+
+/*  #menuButtonZoneClone1{*/
+/*    height: 100%;*/
+/*    width: 70px;*/
+/*    border: yellow 2px solid;*/
+/*    margin-left: auto;*/
+/*  }*/
+
+/*  #playerZone{*/
+/*    border: yellow 2px solid;*/
+/*    width: 100%;*/
+/*    height: 500px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  #bannerZone{*/
+/*    border: yellow 2px solid;*/
+/*    width: 310px;*/
+/*    height: 500px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  .banner{*/
+/*    width: 300px;*/
+/*    height: 660px;*/
+/*    position: absolute;*/
+
+/*  }*/
+
+/*  #buttonBannerZone{*/
+/*    width: 310px;*/
+/*    height: 500px;*/
+/*    border: yellow 2px solid;*/
+/*    position: absolute;*/
+/*    text-align: center;*/
+/*    padding-top: 100px;*/
+
+/*  }*/
+
+/*  #deleteIcon{*/
+/*    width: 100%;*/
+/*  }*/
+
+/*  #deleteIcon{*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*  }*/
+/*  #zoneButtonZone{*/
+/*    width: 100%;*/
+/*    border: yellow 2px solid;*/
+/*    height: 100px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+
+
+/*  #addButtonZone{*/
+/*    width: 100%;*/
+/*    border: yellow 2px solid;*/
+/*    height: 100px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  #addButton1{*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*  }*/
+
+/*  #waitingButtonZone{*/
+/*    width: 100%;*/
+/*    border: yellow 2px solid;*/
+/*    height: 70px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  #waitingButton{*/
+/*    height: 50px;*/
+/*    width: 260px;*/
+/*    font-size: 20px;*/
+/*    font-family: beaufort, serif;*/
+/*  }*/
+
+/*  #bottomZone{*/
+/*    width: 100%;*/
+/*    border: yellow 2px solid;*/
+/*    height: 70px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*  }*/
+
+/*  #backbuttonZone{*/
+/*    height: 100%;*/
+/*    width: 200px;*/
+/*    border: yellow 2px solid;*/
+
+/*  }*/
+
+/*  #backbuttonZoneClone{*/
+/*    height: 100%;*/
+/*    width: 200px;*/
+/*    border: yellow 2px solid;*/
+/*    margin-left: auto;*/
+/*  }*/
+
+/*  #backButton{*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+
+/*  }*/
+/*}*/
+
+
+
+
+
+
+
+
+
+
+
+/*body{*/
+/*  width: 100%;*/
+
+
+/*  background-image:url("../../../assets/Images/background.png");*/
+/*  background-size: 100% 100%;*/
+
+
+/*}*/
+/*button{*/
+/*  font-family: beaufort, serif;*/
+/*}*/
+/*#addPlayerZone{*/
+
+/*  width: 100%;*/
+/*  height: 80%;*/
+/*  border: black solid 1px;*/
+
+/*  display: flex;*/
+/*  justify-content: center;*/
+
+
+
+
+/*}*/
+
+/*#playerZone{*/
+
+/*  position: relative;*/
+
+
+/*  float: left;*/
+/*  border: black solid 1px;*/
+
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
+
+/*#buttonZone{*/
+/*  border: black solid 3px;*/
+/*  position: absolute;*/
+/*  top: 20%;*/
+/*  vertical-align: middle;*/
+/*  z-index: 10;*/
+
+/*  width: 100%;*/
+/*  height: 50%;*/
+/*  display: block;*/
+/*  justify-content: center;*/
+
+
+/*}*/
+
+/*#bottomZone{*/
+
+
+/*}*/
+
+/*#backButton{*/
+/*  width: 10%;*/
+/*  float: left;*/
+/*}*/
+
+/*#addPlayerButton{*/
+
+/*  float: left;*/
+
+/*}*/
+
+/*#waitingRoomButton{*/
+
+/*}*/
+
+/*#bottomZone{*/
+
+/*}*/
+
+
+/*.buttonsAdd{*/
+/*  width: 70%;*/
+/*  margin-left: 16%;*/
+/*}*/
 
 
 

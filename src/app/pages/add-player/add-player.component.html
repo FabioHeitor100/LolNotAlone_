@@ -1,134 +1,502 @@
 <body>
+<div class="container-fluid d-flex vh-100 flex-column">
 
-<div id="addPlayerZone">
+  <div class="row fill-height" style="justify-content: space-between;">
+    <div class="col-md-1 col-3" id="menuCol">
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+        </div>
+      </div>
 
-<div id="playerZone" *ngFor="let player of team;let i=index" >
+    </div>
+    <div class="col-md-10 col-6" style="height: 100% ;     display: flex;justify-content: center;">
 
-  <img src="../../../assets/Images/banner{{player.rank}}.png" height="700" width="300"/>
+        <div class="col-md-3 col-12" style="" *ngFor="let player of team;let i=index" id="bannerCol">
+          <img class="banner" src="../../../assets/Images/generic/banner{{player.rank}}.png" style="position: absolute;top: 0;left: 0;"/>
+          <div id="buttonZone" style="position: absolute; width: 100%;text-align: center;top: 0;left: 0; display: flex;
+    flex-direction: column;
+    place-content: center;
+    justify-content: space-evenly;" >
+            <div style="place-self: center;width: 70%">
+              <input type="text" class="form-control" placeholder="Summoner Name" style="text-align: center;" (change)="updatePlayerSumonerName($event,i)">
+            </div>
+            <div style="place-self: center;width: 70%">
+              <select  class="custom-select" (change)="updatePlayerRole($event,i)" style="text-align-last: center;" >
+                <option selected disabled value>Role</option>
+                <option value="top">
+                                              Top</option>
+                                            <option value="jungle">
+                                              <img src="/assets/Images/waiting/jungle.png" height="20" width="20"/>
+                                              Jungle</option>
+                                            <option value="mid">
+                                              <img src="/assets/Images/waiting/mid.png" height="20" width="20"/>
+                                              Mid</option>
+                                            <option value="bot">
+                                              <img src="/assets/Images/waiting/bot.png" height="20" width="20"/>
+                                              Bot</option>
+                                            <option value="support">
+                                              <img src="/assets/Images/waiting/support.png" height="20" width="20"/>
+                                              Support</option>
+                                            <option value="fill">
+                                              <img src="/assets/Images/waiting/fill.png" height="20" width="20"/>
+                                              Fill</option>
+              </select>
+          </div>
+              <div style="place-self: center;width: 70%">
+              <select  class="custom-select" (change)="updatePlayerRank($event,i)"  style="text-align-last: center;">
+                <option selected disabled value>Rank</option>
+                <option value="iron">
+                                        <img src="/assets/Images/waiting/iron.png" height="20" width="20" style="vertical-align: text-bottom"/>
 
-  <div id="buttonZone">
-<div class="buttonsAdd">
-  <mat-form-field appearance="outline" style="font-family: beaufort, serif;">
-      <mat-label>Summoner Name</mat-label>
-      <label>
-        <input matInput placeholder="Placeholder" (change)="updatePlayerSumonerName($event,i)">
+                                        Iron</option>
+                                      <option value="bronze">
+                                        <img src="/assets/Images/waiting/bronze.png" height="20" width="20"/>
+                                        Bronze</option>
+                                      <option value="silver">
+                                        <img src="/assets/Images/waiting/silver.png" height="20" width="20"/>
+
+                                        Silver</option>
+                                      <option value="gold">
+                                        <img src="/assets/Images/waiting/gold.png" height="20" width="20"/>
+
+                                        Gold</option>
+                                      <option value="platinum">
+                                        <img src="/assets/Images/waiting/platinum.png" height="20" width="20"/>
+                                        Platinum</option>
+                                      <option value="diamond">
+                                        <img src="/assets/Images/waiting/diamond.png" height="20" width="20"/>
+
+
+                                        Diamond</option>
+                                      <option value="master">
+                                        <img src="/assets/Images/waiting/master.png" height="20" width="20"/>
+
+
+                                      Master</option>
+                                      <option value="grandmaster">
+                                        <img src="/assets/Images/waiting/grandmaster.png" height="20" width="20"/>
+
+                                        Grandmaster</option>
+                                      <option value="challenger">
+                                        <img src="/assets/Images/waiting/challenger.png" height="20 " width="20"/>
+                                        Challenger</option>
+              </select>
+
+        </div>
+            <div>
+              <img (click)="deletePlayer(i)" id="deleteIcon" src="../../../assets/Images/addPlayer/deleteIcon.png" />
+    </div>
+          </div>
+        </div>
+
+    </div>
+    <div class="col-md-1 col-3" id="menuCol">
+    </div>
+
+
+  </div>
+
+  <div class="row" style="justify-content: center">
+    <div class="col-md-2 col-5">
+      <label id="zoneButton">
+        <select  class="custom-select" (change)="updatePlayerZone($event)" style="text-align-last: center;">
+          <option selected disabled value>Region</option>
+          <option value="br">BR</option>
+          <option value="eune">EUNE</option>
+          <option value="euw">EUW</option>
+          <option value="jp">JP</option>
+          <option value="kr">KR</option>
+          <option value="lan">LAN</option>
+          <option value="las">LAS</option>
+          <option value="na">NA</option>
+          <option value="oce">OCE</option>
+          <option value="ru">RU</option>
+          <option value="tr">TR</option>
+        </select>
       </label>
-    </mat-form-field>
-</div>
-    <div class="buttonsAdd">
-    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">
-      <mat-label>Role</mat-label>
-      <mat-select (selectionChange)="updatePlayerRole($event,i)" >
-        <mat-option value="top">
-          <img src="../../../assets/Images/TopLane_icon.png" height="20" width="20">
-          top</mat-option>
-        <mat-option value="jungle">
-          <img src="../../../assets/Images/Jungle_icon.png" height="20" width="20"/>
-          jungle</mat-option>
-        <mat-option value="mid">
-          <img src="../../../assets/Images/mid_icon.png" height="20" width="20"/>
-          mid</mat-option>
-        <mat-option value="bot">
-          <img src="../../../assets/Images/Bottom_icon.png" height="20" width="20"/>
-          bot</mat-option>
-        <mat-option value="support">
-          <img src="../../../assets/Images/support_icon.png" height="20" width="20"/>
-          support</mat-option>
-        <mat-option value="fill">
-          <img src="../../../assets/Images/fill_icon.png" height="20" width="20"/>
-          fill</mat-option>
-      </mat-select>
-    </mat-form-field>
+
+
     </div>
-    <div class="buttonsAdd">
-    <mat-form-field appearance="fill" style="font-family: beaufort, serif; ">
-      <mat-label>Rank</mat-label>
-      <mat-select (selectionChange)="updatePlayerRank($event,i)">
-        <mat-option value="iron">
-          <img src="../../../assets/Images/Iron_1.png" height="20" width="20"/>
+  </div>
+  <div class="row" style="justify-content: center">
+    <div class="col-md-1 col-3">
+     <img id="addButton"  *ngIf="team.length <5" (click)="increaseTeam()" onmouseover="this.src='../../../assets/Images/addPlayer/addIcon_hover1.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />
 
-          iron</mat-option>
-        <mat-option value="bronze">
-          <img src="../../../assets/Images/Bronze_1.png" height="20" width="20"/>
-          bronze</mat-option>
-        <mat-option value="silver">
-          <img src="../../../assets/Images/Silver_1.png" height="20" width="20"/>
-
-          silver</mat-option>
-        <mat-option value="gold">
-          <img src="../../../assets/Images/Gold_1.png" height="20" width="20"/>
-
-          gold</mat-option>
-        <mat-option value="platinum">
-          <img src="../../../assets/Images/Platinum_1.png" height="20" width="20"/>
-          platinum</mat-option>
-        <mat-option value="master">
-          <img src="../../../assets/Images/Master_1.png" height="20" width="20"/>
-
-
-          master</mat-option>
-        <mat-option value="grandmaster">
-          <img src="../../../assets/Images/Grandmaster_1.png" height="20" width="20"/>
-
-          grandmaster</mat-option>
-        <mat-option value="challenger">
-          <img src="../../../assets/Images/Grandmaster_1.png" height="20 " width="20"/>
-          challenger</mat-option>
-      </mat-select>
-    </mat-form-field>
     </div>
-    <div style="width: 30%; margin-left: 38%">
-    <img (click)="deletePlayer(i)" src="../../../assets/Images/deleteIcon.png" height="70" width="70"/>
+  </div>
+  <div class="row align-items-center" style="justify-content: space-between; ">
+    <div class="col-md-1 col-3">
+
+      <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="../../../assets/Images/generic/backButton.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>
     </div>
-   </div>
-</div>
+    <div class="col-md-2 col-6" style="align-self: center;">
+      <button id="waitingButton" [disabled]="!teamValid" mat-raised-button routerLink="/waiting" (click)="placeOnTheList()">Waiting Room</button>
+    </div>
+    <div class="col-md-1 col-3">
+    </div>
+  </div>
+
 
 
 
 </div>
+<!--<div id="upperZone1">-->
+<!--  <div id="menuButtonZone">-->
 
-<div id="bottomZone">
+<!--    <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">-->
+<!--  </div>-->
 
-  <div id="backButton">
+<!--  <div id="playerZone">-->
 
-  <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>
-
-  </div>
-
-  <div id="addPlayerButton">
-
-  <img *ngIf="team.length <5" (click)="increaseTeam()" src="../../../assets/Images/AddPlayer.jpg" height="100" width="100"/>
-
-  </div>
-  <div id="ZoneButton">
-
-    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">
-      <mat-label >Zone</mat-label>
-      <mat-select (selectionChange)="updatePlayerZone($event)">
-        <mat-option value="br">BR</mat-option>
-        <mat-option value="eune">EUNE</mat-option>
-        <mat-option value="euw">EUW</mat-option>
-        <mat-option value="jp">JP</mat-option>
-        <mat-option value="kr">KR</mat-option>
-        <mat-option value="lan">LAN</mat-option>
-        <mat-option value="las">LAS</mat-option>
-        <mat-option value="na">NA</mat-option>
-        <mat-option value="oce">OCE</mat-option>
-        <mat-option value="ru">RU</mat-option>
-        <mat-option value="tr">TR</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+<!--    <div id="bannerZone" *ngFor="let player of team;let i=index">-->
+<!--      <img class="banner" src="../../../assets/Images/generic/banner{{player.rank}}.png"/>-->
 
 
+<!--      <div id="buttonBannerZone">-->
+<!--        <mat-form-field appearance="outline" style="font-family: beaufort, serif;">-->
+<!--                      <mat-label>Summoner Name</mat-label>-->
+<!--                      <label>-->
+<!--                        <input matInput  (change)="updatePlayerSumonerName($event,i)">-->
+<!--                      </label>-->
+<!--                    </mat-form-field>-->
 
-  <div id="waitingRoomButton" >
-    <button mat-raised-button routerLink="/waiting" [disabled]="" (click)="placeOnTheList()" hidden="">Waiting Room</button>
-  </div>
+<!--            <mat-form-field appearance="outline" style="font-family: beaufort, serif;">-->
+<!--                        <mat-label>Role</mat-label>-->
+<!--                        <mat-select (selectionChange)="updatePlayerRole($event,i)">-->
+<!--                          <mat-option value="top">-->
+<!--                            <img src="/assets/Images/waiting/top.png" height="20" width="20">-->
+<!--                            Top</mat-option>-->
+<!--                          <mat-option value="jungle">-->
+<!--                            <img src="/assets/Images/waiting/jungle.png" height="20" width="20"/>-->
+<!--                            Jungle</mat-option>-->
+<!--                          <mat-option value="mid">-->
+<!--                            <img src="/assets/Images/waiting/mid.png" height="20" width="20"/>-->
+<!--                            Mid</mat-option>-->
+<!--                          <mat-option value="bot">-->
+<!--                            <img src="/assets/Images/waiting/bot.png" height="20" width="20"/>-->
+<!--                            Bot</mat-option>-->
+<!--                          <mat-option value="support">-->
+<!--                            <img src="/assets/Images/waiting/support.png" height="20" width="20"/>-->
+<!--                            Support</mat-option>-->
+<!--                          <mat-option value="fill">-->
+<!--                            <img src="/assets/Images/waiting/fill.png" height="20" width="20"/>-->
+<!--                            Fill</mat-option>-->
+<!--                        </mat-select>-->
+<!--                      </mat-form-field>-->
 
-  <mat-button-toggle (click)="toggleRightSidenav()">Click</mat-button-toggle>
+<!--                <mat-form-field appearance="outline" style="font-family: beaufort, serif; ">-->
+<!--                  <mat-label>Rank</mat-label>-->
+<!--                  <mat-select (selectionChange)="updatePlayerRank($event,i)" >-->
+<!--                    <mat-option value="iron">-->
+<!--                      <img src="/assets/Images/waiting/iron.png" height="20" width="20" style="vertical-align: text-bottom"/>-->
 
-   </div>
+<!--                      Iron</mat-option>-->
+<!--                    <mat-option value="bronze">-->
+<!--                      <img src="/assets/Images/waiting/bronze.png" height="20" width="20"/>-->
+<!--                      Bronze</mat-option>-->
+<!--                    <mat-option value="silver">-->
+<!--                      <img src="/assets/Images/waiting/silver.png" height="20" width="20"/>-->
+
+<!--                      Silver</mat-option>-->
+<!--                    <mat-option value="gold">-->
+<!--                      <img src="/assets/Images/waiting/gold.png" height="20" width="20"/>-->
+
+<!--                      Gold</mat-option>-->
+<!--                    <mat-option value="platinum">-->
+<!--                      <img src="/assets/Images/waiting/platinum.png" height="20" width="20"/>-->
+<!--                      Platinum</mat-option>-->
+<!--                    <mat-option value="diamond">-->
+<!--                      <img src="/assets/Images/waiting/diamond.png" height="20" width="20"/>-->
+
+
+<!--                      Diamond</mat-option>-->
+<!--                    <mat-option value="master">-->
+<!--                      <img src="/assets/Images/waiting/master.png" height="20" width="20"/>-->
+
+
+<!--                    Master</mat-option>-->
+<!--                    <mat-option value="grandmaster">-->
+<!--                      <img src="/assets/Images/waiting/grandmaster.png" height="20" width="20"/>-->
+
+<!--                      Grandmaster</mat-option>-->
+<!--                    <mat-option value="challenger">-->
+<!--                      <img src="/assets/Images/waiting/challenger.png" height="20 " width="20"/>-->
+<!--                      Challenger</mat-option>-->
+<!--                  </mat-select>-->
+<!--                </mat-form-field>-->
+
+<!--                <div id="deleteIconZone">-->
+<!--                   <img (click)="deletePlayer(i)" id="deleteIcon" src="../../../assets/Images/addPlayer/deleteIcon.png" />-->
+<!--                 </div>-->
+
+
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--    <div id="buttonBannerZone">-->
+<!--      <img class="banner" src="../../../assets/Images/addPlayer/banner normal.png"/>-->
+
+<!--        <mat-form-field appearance="outline" style="font-family: beaufort, serif;">-->
+<!--            <mat-label>Summoner Name</mat-label>-->
+<!--            <label>-->
+<!--              <input matInput  (change)="updatePlayerSumonerName($event,i)">-->
+<!--            </label>-->
+<!--          </mat-form-field>-->
+
+<!--      <mat-form-field appearance="fill" style="font-family: beaufort, serif;">-->
+<!--              <mat-label>Role</mat-label>-->
+<!--              <mat-select (selectionChange)="updatePlayerRole($event,i)" >-->
+<!--                <mat-option value="top">-->
+<!--                  <img src="../../../assets/Images/TopLane_icon.png" height="20" width="20">-->
+<!--                  top</mat-option>-->
+<!--                <mat-option value="jungle">-->
+<!--                  <img src="../../../assets/Images/Jungle_icon.png" height="20" width="20"/>-->
+<!--                  jungle</mat-option>-->
+<!--                <mat-option value="mid">-->
+<!--                  <img src="../../../assets/Images/mid_icon.png" height="20" width="20"/>-->
+<!--                  mid</mat-option>-->
+<!--                <mat-option value="bot">-->
+<!--                  <img src="../../../assets/Images/Bottom_icon.png" height="20" width="20"/>-->
+<!--                  bot</mat-option>-->
+<!--                <mat-option value="support">-->
+<!--                  <img src="../../../assets/Images/support_icon.png" height="20" width="20"/>-->
+<!--                  support</mat-option>-->
+<!--                <mat-option value="fill">-->
+<!--                  <img src="../../../assets/Images/fill_icon.png" height="20" width="20"/>-->
+<!--                  fill</mat-option>-->
+<!--              </mat-select>-->
+<!--            </mat-form-field>-->
+
+<!--      <mat-form-field appearance="fill" style="font-family: beaufort, serif; ">-->
+<!--        <mat-label>Rank</mat-label>-->
+<!--        <mat-select (selectionChange)="updatePlayerRank($event,i)">-->
+<!--          <mat-option value="iron">-->
+<!--            <img src="../../../assets/Images/Iron_1.png" height="20" width="20"/>-->
+
+<!--            iron</mat-option>-->
+<!--          <mat-option value="bronze">-->
+<!--            <img src="../../../assets/Images/Bronze_1.png" height="20" width="20"/>-->
+<!--            bronze</mat-option>-->
+<!--          <mat-option value="silver">-->
+<!--            <img src="../../../assets/Images/Silver_1.png" height="20" width="20"/>-->
+
+<!--            silver</mat-option>-->
+<!--          <mat-option value="gold">-->
+<!--            <img src="../../../assets/Images/Gold_1.png" height="20" width="20"/>-->
+
+<!--            gold</mat-option>-->
+<!--          <mat-option value="platinum">-->
+<!--            <img src="../../../assets/Images/Platinum_1.png" height="20" width="20"/>-->
+<!--            platinum</mat-option>-->
+<!--          <mat-option value="master">-->
+<!--            <img src="../../../assets/Images/Master_1.png" height="20" width="20"/>-->
+
+
+<!--            master</mat-option>-->
+<!--          <mat-option value="grandmaster">-->
+<!--            <img src="../../../assets/Images/Grandmaster_1.png" height="20" width="20"/>-->
+
+<!--            grandmaster</mat-option>-->
+<!--          <mat-option value="challenger">-->
+<!--            <img src="../../../assets/Images/Grandmaster_1.png" height="20 " width="20"/>-->
+<!--            challenger</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+
+
+
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+
+<!--  <div id="menuButtonZoneClone1">-->
+
+<!--  </div>-->
+
+<!--</div>-->
+
+<!--<div id="zoneButtonZone">-->
+<!--  <div>-->
+<!--  <mat-form-field appearance="outline">-->
+<!--          <mat-select placeholder="Zone" (selectionChange)="updatePlayerZone($event)" >-->
+<!--            <mat-option value="br">BR</mat-option>-->
+<!--            <mat-option value="eune">EUNE</mat-option>-->
+<!--            <mat-option value="euw">EUW</mat-option>-->
+<!--            <mat-option value="jp">JP</mat-option>-->
+<!--            <mat-option value="kr">KR</mat-option>-->
+<!--            <mat-option value="lan">LAN</mat-option>-->
+<!--            <mat-option value="las">LAS</mat-option>-->
+<!--            <mat-option value="na">NA</mat-option>-->
+<!--            <mat-option value="oce">OCE</mat-option>-->
+<!--            <mat-option value="ru">RU</mat-option>-->
+<!--            <mat-option value="tr">TR</mat-option>-->
+<!--          </mat-select>-->
+<!--  </mat-form-field>-->
+<!--</div>-->
+
+<!--</div>-->
+
+<!--<div id="addButtonZone">-->
+<!--  <img id="addButton1"  *ngIf="team.length <5" (click)="increaseTeam()" onmouseover="this.src='../../../assets/Images/addPlayer/addIcon_hover1.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />-->
+
+
+<!--</div>-->
+<!--<div id="bottomZone">-->
+<!--  <div id="backbuttonZone">-->
+
+<!--    <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="../../../assets/Images/generic/backButton.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>-->
+
+<!--  </div>-->
+
+<!--  <div id="waitingButtonZone">-->
+<!--<div style="align-self: center">-->
+<!--    <button id="waitingButton" [disabled]="!teamValid" mat-raised-button routerLink="/waiting" (click)="placeOnTheList()" hidden="">Waiting Room</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--  <div id="backbuttonZoneClone">-->
+
+
+<!--  </div>-->
+
+
+
+<!--</div>-->
+
+
+
+<!--<div id="addPlayerZone">-->
+
+<!--<div id="playerZone" *ngFor="let player of team;let i=index" >-->
+
+<!--  <img src="../../../assets/Images/banner{{player.rank}}.png" height="700" width="300"/>-->
+
+<!--  <div id="buttonZone">-->
+<!--<div class="buttonsAdd">-->
+<!--  <mat-form-field appearance="outline" style="font-family: beaufort, serif;">-->
+<!--      <mat-label>Summoner Name</mat-label>-->
+<!--      <label>-->
+<!--        <input matInput  (change)="updatePlayerSumonerName($event,i)">-->
+<!--      </label>-->
+<!--    </mat-form-field>-->
+<!--</div>-->
+<!--    <div class="buttonsAdd">-->
+<!--    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">-->
+<!--      <mat-label>Role</mat-label>-->
+<!--      <mat-select (selectionChange)="updatePlayerRole($event,i)" >-->
+<!--        <mat-option value="top">-->
+<!--          <img src="../../../assets/Images/TopLane_icon.png" height="20" width="20">-->
+<!--          top</mat-option>-->
+<!--        <mat-option value="jungle">-->
+<!--          <img src="../../../assets/Images/Jungle_icon.png" height="20" width="20"/>-->
+<!--          jungle</mat-option>-->
+<!--        <mat-option value="mid">-->
+<!--          <img src="../../../assets/Images/mid_icon.png" height="20" width="20"/>-->
+<!--          mid</mat-option>-->
+<!--        <mat-option value="bot">-->
+<!--          <img src="../../../assets/Images/Bottom_icon.png" height="20" width="20"/>-->
+<!--          bot</mat-option>-->
+<!--        <mat-option value="support">-->
+<!--          <img src="../../../assets/Images/support_icon.png" height="20" width="20"/>-->
+<!--          support</mat-option>-->
+<!--        <mat-option value="fill">-->
+<!--          <img src="../../../assets/Images/fill_icon.png" height="20" width="20"/>-->
+<!--          fill</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--    </div>-->
+<!--    <div class="buttonsAdd">-->
+<!--    <mat-form-field appearance="fill" style="font-family: beaufort, serif; ">-->
+<!--      <mat-label>Rank</mat-label>-->
+<!--      <mat-select (selectionChange)="updatePlayerRank($event,i)">-->
+<!--        <mat-option value="iron">-->
+<!--          <img src="../../../assets/Images/Iron_1.png" height="20" width="20"/>-->
+
+<!--          iron</mat-option>-->
+<!--        <mat-option value="bronze">-->
+<!--          <img src="../../../assets/Images/Bronze_1.png" height="20" width="20"/>-->
+<!--          bronze</mat-option>-->
+<!--        <mat-option value="silver">-->
+<!--          <img src="../../../assets/Images/Silver_1.png" height="20" width="20"/>-->
+
+<!--          silver</mat-option>-->
+<!--        <mat-option value="gold">-->
+<!--          <img src="../../../assets/Images/Gold_1.png" height="20" width="20"/>-->
+
+<!--          gold</mat-option>-->
+<!--        <mat-option value="platinum">-->
+<!--          <img src="../../../assets/Images/Platinum_1.png" height="20" width="20"/>-->
+<!--          platinum</mat-option>-->
+<!--        <mat-option value="master">-->
+<!--          <img src="../../../assets/Images/Master_1.png" height="20" width="20"/>-->
+
+
+<!--          master</mat-option>-->
+<!--        <mat-option value="grandmaster">-->
+<!--          <img src="../../../assets/Images/Grandmaster_1.png" height="20" width="20"/>-->
+
+<!--          grandmaster</mat-option>-->
+<!--        <mat-option value="challenger">-->
+<!--          <img src="../../../assets/Images/Grandmaster_1.png" height="20 " width="20"/>-->
+<!--          challenger</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--    </div>-->
+<!--    <div style="width: 30%; margin-left: 38%">-->
+<!--    <img (click)="deletePlayer(i)" src="../../../assets/Images/deleteIcon.png" height="70" width="70"/>-->
+<!--    </div>-->
+<!--   </div>-->
+<!--</div>-->
+
+
+
+<!--</div>-->
+
+<!--<div id="bottomZone">-->
+
+<!--  <div id="backButton">-->
+
+<!--  <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>-->
+
+<!--  </div>-->
+
+<!--  <div id="addPlayerButton">-->
+
+<!--  <img *ngIf="team.length <5" (click)="increaseTeam()" src="../../../assets/Images/AddPlayer.jpg" height="100" width="100"/>-->
+
+<!--  </div>-->
+<!--  <div id="ZoneButton">-->
+
+<!--    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">-->
+<!--      <mat-label >Zone</mat-label>-->
+<!--      <mat-select (selectionChange)="updatePlayerZone($event)">-->
+<!--        <mat-option value="br">BR</mat-option>-->
+<!--        <mat-option value="eune">EUNE</mat-option>-->
+<!--        <mat-option value="euw">EUW</mat-option>-->
+<!--        <mat-option value="jp">JP</mat-option>-->
+<!--        <mat-option value="kr">KR</mat-option>-->
+<!--        <mat-option value="lan">LAN</mat-option>-->
+<!--        <mat-option value="las">LAS</mat-option>-->
+<!--        <mat-option value="na">NA</mat-option>-->
+<!--        <mat-option value="oce">OCE</mat-option>-->
+<!--        <mat-option value="ru">RU</mat-option>-->
+<!--        <mat-option value="tr">TR</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
+
+
+
+<!--  <div id="waitingRoomButton" >-->
+<!--    <button mat-raised-button routerLink="/waiting" [disabled]="!teamValid" (click)="placeOnTheList()" hidden="">Waiting Room</button>-->
+<!--  </div>-->
+
+<!--  <mat-button-toggle (click)="toggleRightSidenav()">Click</mat-button-toggle>-->
+
+<!--   </div>-->
 
 </body>
 

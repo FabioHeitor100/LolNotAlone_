@@ -1,94 +1,408 @@
 <body>
+<div class="container-fluid d-flex vh-100 flex-column">
 
-<div id="buttonZone1">
+  <div class="row fill-height" style="justify-content: space-between;">
+    <div class="col-md-1 col-3" id="menuCol">
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+        </div>
+      </div>
+    </div>
 
-  <div id="backButton">
+    <div class="col-md-10 col-6" style="height: 100% ;">
+      <div class="row" style="width: 100%; height: auto;justify-content: center;">
+        <div class=" col-md-2">
+          <label style="color: white; width: 100%;text-align: center;"> Rank
+            <select  class="custom-select" (change)="updateRank($event)" style="text-align-last: center;" >
+              <option selected disabled value>Select</option>
+              <option value="all">All</option>
+              <option value="iron">Iron</option>
+              <option value="bronze">Bronze</option>
+              <option value="silver">Silver</option>
+              <option value="gold">Gold</option>
+              <option value="platinum">Platinum</option>
+              <option value="diamond">Diamond</option>
+              <option value="master">Master</option>
+              <option value="grandmaster">Grandmaster</option>
+              <option value="challenger">Challenger</option>
+            </select>
+          </label>
+        </div>
+        <div class=" col-md-2">
+          <label style="color: white;width: 100%;text-align: center;"> Waiting
+            <select  class="custom-select" (change)="updateWaiting($event)" style="text-align-last: center;" >
+              <option selected disabled value>Select</option>
+              <option value="all">All</option>
+              <option value=true>Yes</option>
+              <option value=false>No</option>
+            </select>
+          </label>
+        </div>
+        <div class=" col-md-2">
+          <label style="color: white;width: 100%; text-align: center;"> Zone
+            <select  class="custom-select" (change)="updatePlayerZone($event)" style="text-align-last: center;" >
+              <option selected disabled value>Select</option>
+              <option value="br">BR</option>
+                            <option value="eune">EUNE</option>
+                            <option value="euw">EUW</option>
+                            <option value="jp">JP</option>
+                            <option value="kr">KR</option>
+                            <option value="lan">LAN</option>
+                            <option value="las">LAS</option>
+                            <option value="na">NA</option>
+                            <option value="oce">OCE</option>
+                            <option value="ru">RU</option>
+                            <option value="tr">TR</option>
+            </select>
+          </label>
+        </div>
+        <div class=" col-md-2" style="align-self: center;">
+         <button mat-raised-button id="searchButton" (click)="listSearch()" style="font-family: beaufort, serif;"> search</button>
 
-    <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>
-
-  </div>
-
-  <div id="zoneButton1">
-
-    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">
-      <mat-label>Zone</mat-label>
-      <mat-select (selectionChange)="updatePlayerZone($event)">
-        <mat-option value="br">BR</mat-option>
-        <mat-option value="eune">EUNE</mat-option>
-        <mat-option value="euw">EUW</mat-option>
-        <mat-option value="jp">JP</mat-option>
-        <mat-option value="kr">KR</mat-option>
-        <mat-option value="lan">LAN</mat-option>
-        <mat-option value="las">LAS</mat-option>
-        <mat-option value="na">NA</mat-option>
-        <mat-option value="oce">OCE</mat-option>
-        <mat-option value="ru">RU</mat-option>
-        <mat-option value="tr">TR</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-  </div>
-
-  <div id="searchButton1">
-
-    <button mat-raised-button (click)="listSearch()" style="font-family: beaufort, serif;"> search</button>
-  </div>
-
-
-</div>
-
-
-<div id="searchZone">
-
-  <div id="panel">
-
-    <mat-card style="font-family: beaufort, serif;">Simple card</mat-card>
-
-
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let arr of test; let i=index" style="font-family: beaufort, serif;">
-      <mat-expansion-panel-header style="font-family: beaufort, serif;">
-
-        <div id="header">
-
-          <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>
-          <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>
-          {{arr[0].summonerName}}
-
-          {{arr.length}}
-
-          <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>
         </div>
 
-      </mat-expansion-panel-header>
 
 
-
-      <div id="playerZone">
-
-
-        <div id="player" *ngFor="let player of arr">
-
-
-
-          <img src="../../../assets/Images/banner.png" height="400" width="200"/>
-          {{player.summonerName}}
-
-          <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>
-        </div>
 
       </div>
 
-    </mat-expansion-panel>
+      <div class="row" style="width: 100%;justify-content: center;height: auto; max-height: 50px">
+        <div class= "col-md-9" style="height: 100%">
 
-  </mat-accordion>
+
+          <mat-card style="font-family: beaufort, serif;display: flex;place-content: space-around;max-height: 50px">
+                <div style=" width: 100%;display: flex;place-content: space-around;text-align: center;max-height: 50px">
+                  <div style="width: 20%;height: 100%">
+            <p>Waiting</p>
+                  </div>
+
+                    <div style="width: 20%">
+            <p>Summoner Name</p>
+                    </div>
+
+                      <div style="width: 20%">
+            <p>Rank</p>
+                      </div>
+
+                        <div style="width: 20%">
+            <p>Nº of Players</p>
+                        </div>
+                </div>
+          </mat-card>
+        </div>
+      </div>
+
+      <div class="row" style="width: 100%; height: auto;justify-content: center">
+        <div class= "col-md-9">
+          <mat-accordion>
+                  <mat-expansion-panel *ngFor="let arr of searchArray; let i=index" style="font-family: beaufort, serif;">
+                    <mat-expansion-panel-header style="font-family: beaufort, serif;display: flex;justify-content: space-between; width: 100%;place-content: space-around;">
+                      <div style="width: 100%;display: flex;place-content: space-around;text-align: center;">
+                        <div style="width: 20%">
+                        <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>
+                        <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>
+                        </div>
+                        <p>|</p>
+                        <div style="width: 20%">
+                        {{arr[0].summonerName}}
+                        </div>
+                        <p>|</p>
+                          <div style="width: 20%">
+                        <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>
+                          </div>
+                        <p>|</p>
+                        <div style="width: 20%">
+                      {{arr.length}}
+                        </div>
+                      </div>
+                    </mat-expansion-panel-header>
+
+
+
+                    <div id="playerZone">
+
+
+                      <div id="player" *ngFor="let player of arr">
+
+
+
+                        <img src="../../../assets/Images/banner.png" height="400" width="200"/>
+                        {{player.summonerName}}
+
+                        <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>
+                      </div>
+
+                    </div>
+
+                  </mat-expansion-panel>
+
+                </mat-accordion>
+
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+    <div class="col-md-1 col-3" id="menuCol">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+    </div>
+  </div>
+
+    <div class="row align-items-center" >
+    <div class="col-md-1 col-4">
+
+      <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="../../../assets/Images/generic/backButton.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>
+    </div>
+
+    </div>
 
   </div>
 
-</div>
+
+
+
+
+
+<!--<body>-->
+
+<!--<div id="buttonZone">-->
+<!--  <div id="menuButtonZone2">-->
+
+<!--    <img id="menuIcon"  onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">-->
+<!--  </div>-->
+
+<!--  <div id="buttonZoneMid">-->
+<!--    <div id="zoneButton1">-->
+
+<!--          <mat-form-field appearance="fill" style="font-family: beaufort, serif;">-->
+<!--            <mat-label>Zone</mat-label>-->
+<!--            <mat-select (selectionChange)="updatePlayerZone($event)">-->
+<!--              <mat-option value="br">BR</mat-option>-->
+<!--              <mat-option value="eune">EUNE</mat-option>-->
+<!--              <mat-option value="euw">EUW</mat-option>-->
+<!--              <mat-option value="jp">JP</mat-option>-->
+<!--              <mat-option value="kr">KR</mat-option>-->
+<!--              <mat-option value="lan">LAN</mat-option>-->
+<!--              <mat-option value="las">LAS</mat-option>-->
+<!--              <mat-option value="na">NA</mat-option>-->
+<!--              <mat-option value="oce">OCE</mat-option>-->
+<!--              <mat-option value="ru">RU</mat-option>-->
+<!--              <mat-option value="tr">TR</mat-option>-->
+<!--            </mat-select>-->
+<!--          </mat-form-field>-->
+
+<!--        </div>-->
+
+<!--      <div id="searchButton1">-->
+
+<!--        <button mat-raised-button (click)="listSearch()" style="font-family: beaufort, serif;"> search</button>-->
+<!--      </div>-->
+<!--  </div>-->
+
+
+
+
+
+
+<!--  <div id="menuButtonZone2Clone">-->
+<!--  </div>-->
+
+
+
+
+
+
+
+
+
+
+<!--</div>-->
+<!--<div id="searchZone">-->
+
+<!--    <div id="panel">-->
+
+<!--      <mat-card style="font-family: beaufort, serif;">-->
+
+<!--        <p>Waiting</p>-->
+<!--        <p> Summoner Name</p>-->
+<!--        <p>Rank</p>-->
+<!--        <p>Nº of Players</p>-->
+
+<!--      </mat-card>-->
+
+
+<!--    <mat-accordion>-->
+<!--      <mat-expansion-panel *ngFor="let arr of test; let i=index" style="font-family: beaufort, serif;">-->
+<!--        <mat-expansion-panel-header style="font-family: beaufort, serif;">-->
+
+<!--          <div id="header">-->
+
+<!--            <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>-->
+<!--            <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>-->
+<!--            {{arr[0].summonerName}}-->
+
+<!--            {{arr.length}}-->
+
+<!--            <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>-->
+<!--          </div>-->
+
+<!--        </mat-expansion-panel-header>-->
+
+
+
+<!--        <div id="playerZone">-->
+
+
+<!--          <div id="player" *ngFor="let player of arr">-->
+
+
+
+<!--            <img src="../../../assets/Images/banner.png" height="400" width="200"/>-->
+<!--            {{player.summonerName}}-->
+
+<!--            <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>-->
+<!--          </div>-->
+
+<!--        </div>-->
+
+<!--      </mat-expansion-panel>-->
+
+<!--    </mat-accordion>-->
+
+<!--    </div>-->
+
+
+<!--</div>-->
+
+<!--<div id="bottomZone">-->
+
+<!--  <div id="backbuttonZone">-->
+
+<!--    <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="../../../assets/Images/generic/backButton.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>-->
+
+<!--  </div>-->
+
+
+
+
+<!--</div>-->
+
+<!--<div id="buttonZone1">-->
+
+<!--  <div id="backButton">-->
+
+<!--    <img (click)="gotoBackPage()" src="../../../assets/Images/backButton.png" height="100" width="100"/>-->
+
+<!--  </div>-->
+
+<!--  <div id="zoneButton1">-->
+
+<!--    <mat-form-field appearance="fill" style="font-family: beaufort, serif;">-->
+<!--      <mat-label>Zone</mat-label>-->
+<!--      <mat-select (selectionChange)="updatePlayerZone($event)">-->
+<!--        <mat-option value="br">BR</mat-option>-->
+<!--        <mat-option value="eune">EUNE</mat-option>-->
+<!--        <mat-option value="euw">EUW</mat-option>-->
+<!--        <mat-option value="jp">JP</mat-option>-->
+<!--        <mat-option value="kr">KR</mat-option>-->
+<!--        <mat-option value="lan">LAN</mat-option>-->
+<!--        <mat-option value="las">LAS</mat-option>-->
+<!--        <mat-option value="na">NA</mat-option>-->
+<!--        <mat-option value="oce">OCE</mat-option>-->
+<!--        <mat-option value="ru">RU</mat-option>-->
+<!--        <mat-option value="tr">TR</mat-option>-->
+<!--      </mat-select>-->
+<!--    </mat-form-field>-->
+
+<!--  </div>-->
+
+<!--  <div id="searchButton1">-->
+
+<!--    <button mat-raised-button (click)="listSearch()" style="font-family: beaufort, serif;"> search</button>-->
+<!--  </div>-->
+
+
+<!--</div>-->
+
+
+<!--<div id="searchZone">-->
+
+<!--  <div id="panel">-->
+
+<!--    <mat-card style="font-family: beaufort, serif;">Simple card</mat-card>-->
+
+
+<!--  <mat-accordion>-->
+<!--    <mat-expansion-panel *ngFor="let arr of test; let i=index" style="font-family: beaufort, serif;">-->
+<!--      <mat-expansion-panel-header style="font-family: beaufort, serif;">-->
+
+<!--        <div id="header">-->
+
+<!--          <img *ngIf="arr[0].waiting" src="../../../assets/Images/greenlight.png" height="20" width="20"/>-->
+<!--          <img *ngIf="!arr[0].waiting" src="../../../assets/Images/redlight.png" height="20" width="20"/>-->
+<!--          {{arr[0].summonerName}}-->
+
+<!--          {{arr.length}}-->
+
+<!--          <img src="../../../assets/Images/{{arr[0].teamRank}}.png" height="20" width="20"/>-->
+<!--        </div>-->
+
+<!--      </mat-expansion-panel-header>-->
+
+
+
+<!--      <div id="playerZone">-->
+
+
+<!--        <div id="player" *ngFor="let player of arr">-->
+
+
+
+<!--          <img src="../../../assets/Images/banner.png" height="400" width="200"/>-->
+<!--          {{player.summonerName}}-->
+
+<!--          <img src="../../../assets/Images/{{player.rank}}.png" height="149" width="130"/>-->
+<!--        </div>-->
+
+<!--      </div>-->
+
+<!--    </mat-expansion-panel>-->
+
+<!--  </mat-accordion>-->
+
+<!--  </div>-->
+
+<!--</div>-->
 
 </body>
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 <!--&lt;!&ndash;<p>{{test[1][1].summonerName}}</p>&ndash;&gt;-->
 <!--<button mat-raised-button (click)="listSearch()"> search</button>-->

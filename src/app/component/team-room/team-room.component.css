@@ -1,0 +1,30 @@
+body{
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+#chatZone{
+  height: 100%;
+  width: 100%;
+  background-color: #61c4d1;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#inputZone{
+  background-color: black;
+  width: 100%;
+  height: 10%;
+  margin-top: auto;
+  color: white;
+}
+
+#messageZone{
+  width: 100%;
+  height: 90%;
+
+  border: yellow 2px solid;
+}
+

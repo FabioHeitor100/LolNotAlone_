@@ -32,6 +32,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {SidenavService} from './services/sidenav.service';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -82,7 +85,9 @@ const firebaseConfig = {
         MatGridListModule,
         MatSidenavModule,
         MatButtonToggleModule,
-        MatDialogModule
+        MatDialogModule,
+        NgbModule
+
     ],
   providers: [AddPlayerComponent, SidenavService],
   bootstrap: [AppComponent]

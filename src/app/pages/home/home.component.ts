@@ -20,6 +20,12 @@ export class HomeComponent implements OnInit {
               private sidenav: SidenavService) { }
 
   ngOnInit(): void {
+    if(!this.sidenav.sidenavStatus){
+      console.log("NAO HA SIDENAV");
+      this.sidenav.sidenavStatus = this.sidenavStatus;
+    }
+    this.sidenavStatus = this.sidenav.sidenavStatus ;
+
     this.af.object("/Zone").query.once('value').then(data => {
       this.playerData = Object.keys(data.val()).map(key => data.val()[key]);
       console.log("playerLIst:", this.playerData);
@@ -58,13 +64,18 @@ export class HomeComponent implements OnInit {
     if(this.sidenavStatus === true){
       this.sidenav.close();
       this.sidenavStatus = false;
+      this.sidenav.sidenavStatus = this.sidenavStatus;
+      return;
     }
 
-    else if (this.sidenavStatus === false){
+    if (this.sidenavStatus === false){
       this.sidenav.open();
       this.sidenavStatus = true;
+      this.sidenav.sidenavStatus = this.sidenavStatus;
+      return;
     }
 
-}
+
+  }
 
 }

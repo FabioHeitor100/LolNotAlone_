@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {TeamRoomComponent} from '../../component/team-room/team-room.component';
 import { Location } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
+import {SidenavService} from '../../services/sidenav.service';
 
 @Component({
   selector: 'app-waiting',
@@ -20,6 +21,8 @@ export class WaitingComponent implements OnInit {
 
   waitingStatus = false;
   teamZone;
+
+  duoPreference;
 
 
 
@@ -46,6 +49,9 @@ export class WaitingComponent implements OnInit {
   fiveVsFive;
 
   rolesToLookFor;
+  finalPlayersSelected = [];
+  randomNumber;
+
 
 
 
@@ -61,7 +67,7 @@ export class WaitingComponent implements OnInit {
   sound;
   actualTeamVisible;
 
-
+  sidenavStatus = false;
 
   itemRef: AngularFireObject<any>;
   playerSelectedStatus: AngularFireObject<any>;
@@ -71,7 +77,8 @@ export class WaitingComponent implements OnInit {
    public teamFunctionsService: TeamFunctionsService,
    public af: AngularFireDatabase,
    private location: Location,
-   public dialog: MatDialog) {
+   public dialog: MatDialog,
+   private sidenav: SidenavService) {
 
     this.actualTeam = this.teamFunctionsService.actualTeam;
 
@@ -118,6 +125,7 @@ export class WaitingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sidenavStatus = this.sidenav.sidenavStatus ;
     console.log("add player team:", this.addPlayerComponent.team);
     this.actualTeam = this.teamFunctionsService.actualTeam;
     console.log("actual team:", this.actualTeam);
@@ -150,11 +158,18 @@ export class WaitingComponent implements OnInit {
 
 
   updateMatchType(value){
-    this.matchType = value.value;
+    this.matchType = (value.target as HTMLInputElement).value;
     console.log("MATCH TYPE:", this.matchType);
   }
 
+  updateLanePreference(value){
+    this.duoPreference = (value.target as HTMLInputElement).value;
+    console.log("DUO PREfENCE:", this.duoPreference);
+  }
+
+
   startFastSearch(matchType) {
+    console.log("Match type", this.matchType);
     console.log("TEAM INICIAL", this.actualTeam);
     console.log("starting fast search");
     this.roomLeader = true;
@@ -165,52 +180,148 @@ export class WaitingComponent implements OnInit {
       // colocar dentro do if com uma promise
       let playersAccepted = [];
       if (matchType === "duo") {
-        console.log("Searching duo partner");
 
+        this.sound = new Audio();
+        this.sound.src = '/src/assets/File0117.mp3';
+        this.sound.load();
+        this.sound.play();
 
-        let duoAcceptedPlayers = [];
+        if (this.sound.play() !== undefined) {
+          this.sound.play().then(function() {
+            // Automatic playback started!
+          }).catch(function(error) {
+            console.log("error!!");
+            // Automatic playback failed.
+            // Show a UI element to let the user manually start playback.
+          });
+        }
 
+        console.log("1111111111111111");
 
-        for (let players of this.allPlayers) {
-          if (players.teamPlayersNumber === 1) {
-            console.log("NOME 1: ", players.summonerName);
-            console.log("NOME Da equipa: ", this.actualTeam[0].summonerName);
-            if (players.summonerName != this.actualTeam[0].summonerName) {
-              duoAcceptedPlayers.push(players);
+        this.teamFunctionsService.getAllPlayersWaiting(this.teamZone, this.matchType).then( data => {
+          this.allPlayers = Object.keys(data.val()).map(key => data.val()[key]);
+          let duoAcceptedPlayers = [];
+          console.log("Searching duo partner");
+
+          console.log("222222222222222");
+          for (let players of this.allPlayers) {
+            if (players.teamPlayersNumber === 1) {
+              console.log("NOME 1: ", players.summonerName);
+              console.log("NOME Da equipa: ", this.actualTeam[0].summonerName);
+              if (players.summonerName != this.actualTeam[0].summonerName) {
+                duoAcceptedPlayers.push(players);
+              }
+
             }
 
+
+
+
           }
 
+          console.log("3333333333333");
           if (duoAcceptedPlayers.length <= 0) {
             console.log("NAO EXISTEM JOGADORES");
+            alert("No players found, wait a little or go to the search area to see if any player is online");
+            return;
           }
 
 
-        }
-        console.log("Jogadores duo", duoAcceptedPlayers);
-        console.log("TEAM INICIAL", this.actualTeam);
+          console.log("Jogadores duo", duoAcceptedPlayers);
+          console.log("TEAM INICIAL", this.actualTeam);
 
+          let duoAceptedRankPlayers = [];
 
-        let duoAceptedRankPlayers = [];
-        for (let players of duoAcceptedPlayers) {
-          if (players.teamRank === this.actualTeam[0].rank) {
-            console.log("RANK!!!!", players.teamRank);
-            duoAceptedRankPlayers.push(players);
+          for (let players of duoAcceptedPlayers) {
+            if (players.teamRank === this.actualTeam[0].rank) {
+              console.log("44444444444444444");
+              console.log("RANK!!!!", players.teamRank);
+              duoAceptedRankPlayers.push(players);
+            }
           }
-        }
-        console.log("RANK ACCEPTED PLAYERS:", duoAceptedRankPlayers);
-        console.log("TEAM INICIAL", this.actualTeam);
-        this.actualTeamVisible = false;
-        this.finalTeam = this.actualTeam;
-        console.log("TEAM FINAL ANTES:", this.finalTeam);
-        this.finalTeam.push(duoAceptedRankPlayers[0]);
-        console.log("TEAM INICIAL:", this.actualTeam);
-        console.log("TEAM FINAL:", this.finalTeam);
 
-        this.playerThatSearchedName = this.actualTeam[0].summonerName;
-        this.alertSelectedPlayers();
-        this.createRoom();
-        this.teamRoomComponent.player = this.actualTeam[0].summonerName;
+          if (duoAceptedRankPlayers.length <= 0) {
+            console.log("NAO EXISTEM JOGADORES2");
+            alert("No players found, wait a little or go to the search area to see if any player is online");
+            return;
+          }
+
+          let duoPreferencePlayers = [];
+
+          console.log("555555555555555555555");
+
+
+
+
+          for(let players of duoAceptedRankPlayers){
+            if(players.teamRoles[0] === this.duoPreference){
+              duoPreferencePlayers.push(players);
+            }
+          }
+
+
+
+          console.log("LENHT", duoPreferencePlayers.length);
+          console.log("DUO PREFERENCE PLAYERS", duoPreferencePlayers);
+
+          if(duoPreferencePlayers.length >0){
+            console.log("DUO PREFERENCE PART");
+            this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
+            console.log("RANDOM NUMBER", this.randomNumber);
+            this.actualTeamVisible = false;
+            this.finalTeam = this.actualTeam;
+            console.log("777777777777777777");
+            console.log("TEAM FINAL ANTES:", this.finalTeam);
+            this.finalTeam.push(duoPreferencePlayers[this.randomNumber]);
+            console.log("TEAM INICIAL:", this.actualTeam);
+            console.log("TEAM FINAL:", this.finalTeam);
+
+            this.playerThatSearchedName = this.actualTeam[0].summonerName;
+            this.alertSelectedPlayers();
+            this.createRoom();
+            this.teamRoomComponent.player = this.actualTeam[0].summonerName;
+
+          } else if (duoPreferencePlayers.length === 0){
+
+            console.log("NORmAL PART");
+
+         // this.playSound();
+          console.log("DUO PREFERENCE PLAYERS:", duoPreferencePlayers);
+
+          console.log("6666666666666666666");
+          console.log("RANK ACCEPTED PLAYERS:", duoAceptedRankPlayers);
+          console.log("TEAM INICIAL", this.actualTeam);
+          this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
+          console.log("RANDOM NUMBER", this.randomNumber);
+          this.actualTeamVisible = false;
+          this.finalTeam = this.actualTeam;
+          console.log("777777777777777777");
+          console.log("TEAM FINAL ANTES:", this.finalTeam);
+          this.finalTeam.push(duoAceptedRankPlayers[this.randomNumber]);
+          console.log("TEAM INICIAL:", this.actualTeam);
+          console.log("TEAM FINAL:", this.finalTeam);
+
+            this.playerThatSearchedName = this.actualTeam[0].summonerName;
+            this.alertSelectedPlayers();
+            this.createRoom();
+            this.teamRoomComponent.player = this.actualTeam[0].summonerName;
+        }
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+        console.log("88888888888888888");
+
+
       }
 
 
@@ -227,15 +338,54 @@ export class WaitingComponent implements OnInit {
 
           }
 
-          if (teamAcceptedPlayers.length <= 0) {
-            console.log("NAO EXISTEM JOGADORES");
-            //this.dialog.open(WaitingComponent);
-          }
+
 
 
         }
+        if (teamAcceptedPlayers.length <= 0) {
+          console.log("NAO EXISTEM JOGADORES");
+          alert("No players found, wait a little or go to the search area to see if any player is online");
+          return;
+          //this.dialog.open(WaitingComponent);
+        }
+        let teamAcceptedRankPlayers = [];
+
+        for ( let players of teamAcceptedPlayers){
+          console.log(this.actualTeamRank);
+          console.log(players.teamRank);
+          if(this.actualTeamRank === players.teamRank){
+            teamAcceptedRankPlayers.push(players);
+          }
+        }
+        this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
+        console.log("RANDOM NUMBER", this.randomNumber);
+
+        console.log("PLAYER A PROCURAR;", teamAcceptedRankPlayers[0].summonerName);
+        this.actualTeamVisible = false;
+        this.finalTeam = [];
+        for(let player of this.actualTeam){
+          this.finalTeam.push(player);
+        }
+
+        this.af.object( "/Zone/" + this.teamZone + "/list/" + teamAcceptedRankPlayers[0].summonerName).query.once('value').then(data => {
+          console.log(data.val() as string);
+          let selectedPlayers = Object.keys(data.val()).map(k => data.val()[k]);
+
+          for(let player of selectedPlayers){
+            this.finalTeam.push(player);
+          }
+          this.playerThatSearchedName = this.actualTeam[0].summonerName;
+
+          console.log("FINAL TEAM YEAH!!", this.finalTeam);
+          this.alertSelectedPlayers();
+          this.createRoom();
+          this.teamRoomComponent.player = this.actualTeam[0].summonerName;
+
+        });
+
 
         console.log("Jogadores 5v5", teamAcceptedPlayers);
+        console.log("Jogadores 5v5 rank igual", teamAcceptedRankPlayers);
         console.log("TEAM INICIAL", this.actualTeam);
       }
     });
@@ -275,6 +425,9 @@ export class WaitingComponent implements OnInit {
                   }
 
                   }
+
+
+
                 }
 
               }
@@ -282,9 +435,30 @@ export class WaitingComponent implements OnInit {
             }
           }
 
-          console.log("acceptedFlexPlayers", acceptedFlexPlayers);
+          for(let players of acceptedFlexPlayers){
+            if (players.teamRank === this.actualTeamRank){
+            this.finalPlayersSelected.push(players);
+            }
+          }
+
+          this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
+          console.log("RANDOM NUMBER", this.randomNumber);
+          this.actualTeamVisible = false;
+
+          this.finalTeam = this.actualTeam;
+          console.log("TEAM FINAL ANTES:", this.finalTeam);
+          console.log("TEAM INICIAL:", this.actualTeam);
+          this.finalTeam.push(this.finalPlayersSelected[this.randomNumber]);
+          console.log("EQUIPA FINAL!!!!!!!!!!!!!!", this.finalTeam);
+
+
+
+          console.log("acceptedFlexPlayers2DOIS!!", acceptedFlexPlayers);
+          console.log("finalPlayersSelected!!", this.finalPlayersSelected);
+
             if (acceptedFlexPlayers.length <= 0) {
               console.log("NAO EXISTEM JOGADORES");
+              alert("No players found, wait a little or go to the search area to see if any player is online");
               //this.dialog.open(WaitingComponent);
             }
 
@@ -303,6 +477,7 @@ export class WaitingComponent implements OnInit {
   // }
 
   startWaiting(){
+    console.log("Match type", this.matchType);
     console.log("THIS TEAM ZONE",this.teamFunctionsService.teamZone);
     console.log("THIS TEAM ZONE",this.teamZone);
    // console.log("TEAM COMPONENT TEAM ZONE:", this.teamRoomComponent.teamZone);
@@ -330,18 +505,19 @@ export class WaitingComponent implements OnInit {
 
   waitingForGettingSelected(){
 
-    this.playerThatSearchedStatus = this.af.object("/Zone/" + this.teamZone + "/waiting/" + this.actualTeam[0].summonerName + "/playerThatSearched");
+    this.playerThatSearchedStatus = this.af.object("/Zone/" + this.teamZone + "/waiting/" + this.matchType + "/" + this.actualTeam[0].summonerName + "/playerThatSearched");
     this.playerThatSearchedStatus.snapshotChanges().subscribe(action => {
       console.log(action.type);
       console.log(action.key);
       console.log(action.payload.val());
-      console.log("MUDOU!!!!!!!!!");
+      console.log("MUDOU o observable de playerThatSearched");
 
       this.playerThatSearched  = action.payload.val();
       console.log("PLAYER QUE PESQUISOU!!:", this.playerThatSearched);
 
       if(this.playerThatSearched != "" && this.playerThatSearched != this.playerThatSearchedName){
         console.log("NAO È O LIDER!!");
+        console.log("IR pArA O ROOM COMPONENT")
         this.transferDataToRoomComponent(this.playerThatSearched);
       }
 
@@ -351,18 +527,18 @@ export class WaitingComponent implements OnInit {
 
     });
 
-    this.playerSelectedStatus = this.af.object( "/Zone/" + this.teamZone + "/waiting/" + this.actualTeam[0].summonerName + "/teamSelected");
+    this.playerSelectedStatus = this.af.object( "/Zone/" + this.teamZone + "/waiting/" + this.matchType + "/" + this.actualTeam[0].summonerName + "/teamSelected");
     this.playerSelectedStatus.snapshotChanges().subscribe(action => {
       console.log(action.type);
       console.log(action.key);
       console.log(action.payload.val());
-      console.log("MUDOU!!!!!!!!!");
+      console.log("MUDOU o observable de teamSelected");
       if(action.payload.val() === true){
         this.playerSelectedStatusVar = true;
-        this.sound = new Audio();
-        this.sound.src = 'src/assets/Audio/Welcome Rift.mp3';
-        this.sound.load();
-        this.sound.play();
+        // this.sound = new Audio();
+        // this.sound.src = 'src/assets/Audio/Welcome Rift.mp3';
+        // this.sound.load();
+        // this.sound.play();
         this.teamRoomComponent.player = this.actualTeam[0].summonerName;
 
 
@@ -381,17 +557,17 @@ export class WaitingComponent implements OnInit {
 
   stopWaiting(){
     this.af.object( "/Zone/" + this.teamZone + "/list/" + this.actualTeam[0].summonerName+ "/0").update( {waiting: false});
-    this.af.object("/Zone/" + this.teamZone + "/waiting/" + this.actualTeam[0].summonerName).remove();
+    this.af.object("/Zone/" + this.teamZone + "/waiting/" + this.matchType + "/" + this.actualTeam[0].summonerName).remove();
     this.af.object("/Zone/" + this.teamZone + "/rooms/" + this.actualTeam[0].summonerName).remove();
    // this.af.object( "/Zone/" + this.teamZone + "/list/" + this.actualTeam[0].summonerName + "/waiting" ).update(false);
-
+    this.waitingStatus = false;
   }
 
   alertSelectedPlayers(){
     console.log("FINAL TEAM YEAH!!", this.finalTeam);
     for(let player of this.finalTeam){
-      console.log("player:", player.summonerName );
-      this.af.object("/Zone/" + this.teamZone + "/waiting/" + player.summonerName).update({
+      console.log("player:", player.summonerName);
+      this.af.object("/Zone/" + this.teamZone + "/waiting/" + this.matchType + "/" + player.summonerName).update({
         teamSelected: true,
         playerThatSearched: this.actualTeam[0].summonerName
       });
@@ -434,13 +610,37 @@ export class WaitingComponent implements OnInit {
 
   transferDataToRoomComponent(player){
     console.log("player a VER!!!",player);
+    console.log("PASSAR A DATA PARA O ROOM COMPONENT",player);
     this.af.object("/Zone/" + this.teamZone + "/rooms/" + player).query.once('value').then(data => {
       this.teamRoomComponent.roomData = data.val();
+      console.log("DATA DO ROOM COMPONRNT:", this.teamRoomComponent.roomData);
+      this.actualTeamVisible = false;
+      this.finalTeam = this.teamRoomComponent.roomData.players;
       this.teamRoomComponent.filterPlayersTeam();
       this.teamRoomComponent.createChatData();
     });
 
 
+
+
+
+  }
+
+  toggleRightSidenav() {
+
+    if(this.sidenavStatus === true){
+      this.sidenav.close();
+      this.sidenavStatus = false;
+      this.sidenav.sidenavStatus = this.sidenavStatus;
+      return;
+    }
+
+    if (this.sidenavStatus === false){
+      this.sidenav.open();
+      this.sidenavStatus = true;
+      this.sidenav.sidenavStatus = this.sidenavStatus;
+      return;
+    }
 
 
 
@@ -453,7 +653,12 @@ export class WaitingComponent implements OnInit {
   }
 
 
-
+playSound(){
+  this.sound = new Audio();
+  this.sound.src = 'src/assets/Audio/Welcome Rift.mp3';
+  this.sound.load();
+  this.sound.play();
+}
 
 
 
@@ -492,12 +697,12 @@ export class WaitingComponent implements OnInit {
   }
 
   verUpdate(){
-     this.af.object("/TESTE/" + "testeDeVer").query.once('value').then( data => {this.testedeVer2 = data.val();
-       console.log("DATA VER:", this.testedeVer2); });
-     console.log(this.item);
-     this.af.object("/waiting/" + this.actualTeam[0].summonerName).update({teamSelected: true});
-
-  }
+  //    this.af.object("/TESTE/" + "testeDeVer").query.once('value').then( data => {this.testedeVer2 = data.val();
+  //      console.log("DATA VER:", this.testedeVer2); });
+  //    console.log(this.item);
+  //    this.af.object("/waiting/" + this.actualTeam[0].summonerName).update({teamSelected: true});
+  //
+   }
 
   startCountdown(seconds){
     let counter = seconds;
