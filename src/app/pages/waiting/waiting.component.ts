@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {AddPlayerComponent} from '../add-player/add-player.component';
 import {TeamFunctionsService} from '../../services/team-functions.service';
 import {AngularFireDatabase, AngularFireObject} from '@angular/fire/database';
@@ -7,6 +7,7 @@ import {TeamRoomComponent} from '../../component/team-room/team-room.component';
 import { Location } from '@angular/common';
 import {MatDialog} from '@angular/material/dialog';
 import {SidenavService} from '../../services/sidenav.service';
+import {Howl, Howler} from 'howler';
 
 @Component({
   selector: 'app-waiting',
@@ -16,6 +17,8 @@ import {SidenavService} from '../../services/sidenav.service';
 export class WaitingComponent implements OnInit {
 
   @ViewChild(TeamRoomComponent) teamRoomComponent;
+
+
 
 
 
@@ -82,7 +85,10 @@ export class WaitingComponent implements OnInit {
 
     this.actualTeam = this.teamFunctionsService.actualTeam;
 
-    console.log("LENGHT:", this.actualTeam.length);
+    console.log("ACTUAL TEAM", this.actualTeam);
+
+    if(this.actualTeam){
+
 
     if(this.actualTeam.length === 1){
       console.log("TUDO");
@@ -100,6 +106,9 @@ export class WaitingComponent implements OnInit {
     }else if(this.actualTeam.length === 5){
       console.log("SO 5v5 EQUIPAS");
       this.fiveVsFive = true;
+    }
+    } else {
+      window.location.href = 'addPlayer';
     }
 
     this.itemRef = af.object("/TESTE/" + "testeDeVer");
@@ -125,6 +134,9 @@ export class WaitingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+
+
     this.sidenavStatus = this.sidenav.sidenavStatus ;
     console.log("add player team:", this.addPlayerComponent.team);
     this.actualTeam = this.teamFunctionsService.actualTeam;
@@ -169,6 +181,14 @@ export class WaitingComponent implements OnInit {
 
 
   startFastSearch(matchType) {
+
+
+    this.finalTeam = [];
+    console.log("-----------------------------------------------------");
+    console.log("FINALLLLLLL TEAMMMMMM!! ", this.finalTeam);
+    console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+    console.log(JSON.stringify(this.actualTeam));
+    console.log("-----------------------------------------------------");
     console.log("Match type", this.matchType);
     console.log("TEAM INICIAL", this.actualTeam);
     console.log("starting fast search");
@@ -181,20 +201,6 @@ export class WaitingComponent implements OnInit {
       let playersAccepted = [];
       if (matchType === "duo") {
 
-        this.sound = new Audio();
-        this.sound.src = '/src/assets/File0117.mp3';
-        this.sound.load();
-        this.sound.play();
-
-        if (this.sound.play() !== undefined) {
-          this.sound.play().then(function() {
-            // Automatic playback started!
-          }).catch(function(error) {
-            console.log("error!!");
-            // Automatic playback failed.
-            // Show a UI element to let the user manually start playback.
-          });
-        }
 
         console.log("1111111111111111");
 
@@ -286,20 +292,21 @@ export class WaitingComponent implements OnInit {
             console.log("NORmAL PART");
 
          // this.playSound();
-          console.log("DUO PREFERENCE PLAYERS:", duoPreferencePlayers);
-
-          console.log("6666666666666666666");
-          console.log("RANK ACCEPTED PLAYERS:", duoAceptedRankPlayers);
-          console.log("TEAM INICIAL", this.actualTeam);
+            console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+            console.log(JSON.stringify(this.actualTeam));
           this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
-          console.log("RANDOM NUMBER", this.randomNumber);
+            console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+            console.log(JSON.stringify(this.actualTeam));
           this.actualTeamVisible = false;
-          this.finalTeam = this.actualTeam;
-          console.log("777777777777777777");
-          console.log("TEAM FINAL ANTES:", this.finalTeam);
+            console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+            console.log(JSON.stringify(this.actualTeam));
+          //this.finalTeam = this.actualTeam;
+            this.finalTeam =[...this.actualTeam];
+            console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+            console.log(JSON.stringify(this.actualTeam));
           this.finalTeam.push(duoAceptedRankPlayers[this.randomNumber]);
-          console.log("TEAM INICIAL:", this.actualTeam);
-          console.log("TEAM FINAL:", this.finalTeam);
+            console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
+            console.log(JSON.stringify(this.actualTeam));
 
             this.playerThatSearchedName = this.actualTeam[0].summonerName;
             this.alertSelectedPlayers();
@@ -516,8 +523,15 @@ export class WaitingComponent implements OnInit {
       console.log("PLAYER QUE PESQUISOU!!:", this.playerThatSearched);
 
       if(this.playerThatSearched != "" && this.playerThatSearched != this.playerThatSearchedName){
+        let sound = new Howl({
+          src: ['/assets/File0117.mp3'],
+          volume: 0.2,
+
+        });
+        // src/assets/File0117.mp3
+        sound.play();
         console.log("NAO È O LIDER!!");
-        console.log("IR pArA O ROOM COMPONENT")
+        console.log("IR pArA O ROOM COMPONENT");
         this.transferDataToRoomComponent(this.playerThatSearched);
       }
 
@@ -624,6 +638,7 @@ export class WaitingComponent implements OnInit {
 
 
 
+    
   }
 
   toggleRightSidenav() {
@@ -659,10 +674,24 @@ playSound(){
   this.sound.load();
   this.sound.play();
 }
+  //
+  // @HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+  //   console.log("Processing beforeunload...");
+  //   // Do more processing...
+  //   console.log("event.returnValue", event.returnValue);
+  //   event.returnValue = false;
+  //   console.log("event.returnValue", event.returnValue);
+  // }
 
+  @HostListener("window:beforeunload", ["$event"]) beforeUnloadHandler(event: Event) {
+    console.log("window:beforeunload");
+    event.returnValue = "You will leave this page" as any;
+  }
 
-
-
+  @HostListener("window:unload", ["$event"]) unloadHandler(event: Event) {
+    this.stopWaiting();
+    alert("Hello");
+  }
 
 
 

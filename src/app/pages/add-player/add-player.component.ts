@@ -17,6 +17,7 @@ export class AddPlayerComponent implements OnInit {
       summonerName: '',
       rank: '',
       role: '',
+      waiting: false,
     }
   ];
 
@@ -52,9 +53,10 @@ export class AddPlayerComponent implements OnInit {
     this.team.length = this.team.length + 1;
     this.team.length = this.arrayLenghtNow;
     this.team[this.arrayLenghtNow] = {
+      waiting: false,
       summonerName: '',
       rank: '',
-      role: '',
+      role: ''
     };
     console.log('Array team:', this.team);
     this.checkIfFormIsCompleted();

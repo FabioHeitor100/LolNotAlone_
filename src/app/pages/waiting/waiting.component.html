@@ -19,6 +19,7 @@
     place-content: center;
     justify-content: space-evenly;height: 70%;" >
           <div id="rankZone">
+            Actual team
                       <img id="rankImage" src="../../../assets/Images/waiting/{{player.rank || player.teamRank}}.png"/>
                     </div>
 
@@ -46,7 +47,7 @@
             </div>
 
             <div id="summonerName">
-              <p style="font-family: beaufort, serif;">{{player.summonerName}}</p>
+              <p style="font-family: beaufort, serif;">-----{{player.summonerName}}</p>
             </div>
 
             <div id="playerRole">
@@ -82,7 +83,6 @@
     <div class="col-md-6 col-8" style="display: grid;align-items: center;">
       <div class="row" >
         <div class="col-md-4 col-12">
-
           <select *ngIf="duoVisible"  class="custom-select" (change)="updateLanePreference($event)" style="text-align-last: center;">
             <option selected disabled value>Role</option>
             <option value="top"> top</option>
