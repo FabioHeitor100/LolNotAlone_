@@ -16,7 +16,19 @@ body{
 }
 
 div{
+/*border: yellow 1px solid;*/
+}
 
+#menuCol{
+  max-width: 100px;
+}
+
+#homeButton{
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 #menuIcon{
@@ -56,9 +68,18 @@ div{
   margin-bottom: 30px;
 }
 
-@media screen and (max-width: 400px){
+@media screen and (max-width: 600px){
 
 
+body{
+  background-image: none;
+  background-color: black;
+}
+
+  #page{
+    background-image: none;
+    background-color: black;
+  }
 
   #patreon{
     max-height: 40px;

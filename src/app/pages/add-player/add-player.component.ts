@@ -35,6 +35,8 @@ export class AddPlayerComponent implements OnInit {
   sound;
 
 
+
+
   constructor(public af: AngularFireDatabase,
               public teamFunctionsService: TeamFunctionsService,
               private location: Location,
@@ -47,6 +49,11 @@ export class AddPlayerComponent implements OnInit {
     }
     this.sidenavStatus = this.sidenav.sidenavStatus ;
   }
+
+  openLaneButton(){
+
+  }
+
 
   increaseTeam(){
     this.arrayLenghtNow = this.team.length;

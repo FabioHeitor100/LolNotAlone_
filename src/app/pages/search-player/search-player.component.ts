@@ -105,7 +105,7 @@ export class SearchPlayerComponent implements OnInit {
 
     if(!this.searchRank && !this.searchWaiting && !this.teamZone && !this.teamSize){
       console.log("È PRECISO SELECIONAR ALGO");
-      alert("Please select the rank,zone and waiting criteria");
+      alert("Please select the Team size,rank,zone and waiting criteria");
       return;
     }
 
@@ -133,6 +133,9 @@ export class SearchPlayerComponent implements OnInit {
 
         this.searchArray = this.array3;
         console.log("ALL PLAYERS",this.searchArray);
+        if(this.searchArray.length === 0){
+          alert("No players found, wait a little or change the search criteria");
+        }
         return;
       }
 
@@ -159,6 +162,9 @@ export class SearchPlayerComponent implements OnInit {
         }
         console.log("Players serched", this.array3);
         this.searchArray = this.array3;
+        if(this.searchArray.length === 0){
+          alert("No players found, wait a little or change the search criteria");
+        }
         return;
       }
 
@@ -183,6 +189,9 @@ export class SearchPlayerComponent implements OnInit {
         }
         console.log("Players serched", this.array3);
       this.searchArray = this.array3;
+        if(this.searchArray.length === 0){
+          alert("No players found, wait a little or change the search criteria");
+        }
        return;
       }
 
@@ -220,6 +229,9 @@ export class SearchPlayerComponent implements OnInit {
         }
         console.log("Players serched", this.array3);
         this.searchArray = this.array3;
+        if(this.searchArray.length === 0){
+          alert("No players found, wait a little or change the search criteria");
+        }
       }
 
 

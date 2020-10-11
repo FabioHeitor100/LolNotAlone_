@@ -1,56 +1,159 @@
 <body>
 
 <div class="container-fluid d-flex vh-100 flex-column">
-  <div class="row" style="text-align: center;">
-    <div class="col-md-1 col-4">
-      <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+  <div class="row" style="padding-top: 10px;justify-content: center; ">
+   <div class="col-xl-2" style="text-align: center;color: white;font-family: Spiegel, 'Arial Narrow', Arial, sans-serif;">
+    <p>About Me</p>
+   </div>
+    <div class="col-xl-2" style="text-align: center;color: white">
+      <p>Create Room</p>
     </div>
-  <div class="col-md-10 col-4">
+    <div class="col-xl-2" style="text-align: center;color: white">
+      <p>Search</p>
+    </div>
+    <div class="col-xl-2" style="text-align: center;color: white; font-family: 'Beaufort for LOL', serif;">
+      <p>Donate</p>
+    </div>
   </div>
-  <div class="col-md-1 col-4">
-    <img id="helpIcon" routerLink="/guide" onmouseover="this.src='../../../assets/Images/home/helpIconHover.png'" src="/assets/Images/home/helpIcon.png" onmouseout="this.src='/assets/Images/home/helpIcon.png'">
+
+  <div class="row" style="justify-content: center">
+    <div class="col-xl-4">
+      <img id="logo" src="/assets/Images/generic/Logo.png">
+
+
+    </div>
+
   </div>
+
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-4" style="text-align: center">
+       <h1>Need a Friend?</h1>
+    </div>
+
+  </div>
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-5" style="text-align: center">
+      <h1>Need a Team?</h1>
+    </div>
+
+  </div>
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-5" style="text-align: center">
+      <h1>Need a Challenge?</h1>
+    </div>
+
+  </div>
+
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-2" style="text-align: center">
+      <h1>Read more bellow</h1>
+    </div>
+  </div>
+
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-8" style="text-align: center; font-style: italic;line-height: 0.85;
+    font-family: 'Beaufort for LOL', serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;">
+      <h1 style="text-align: center;line-height: 0.85;
+    font-family: 'Beaufort for LOL', serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;">CHAMPION</h1>
+    </div>
+  </div>
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-8" style="text-align: center; font-style: italic;line-height: 0.85;
+    font-family: 'Beaufort for LOL', serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;">
+      <h1 style="text-align: center;line-height: 0.85;
+    font-family: Spiegel, 'Arial Narrow', Arial, sans-serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;
+  ">CHAMPION</h1>
+    </div>
+  </div>
+  <div class="row" style="justify-content: center;color: white">
+    <div class="col-xl-8" style="text-align: center; font-style: italic;line-height: 0.85;
+    font-family: 'Beaufort for LOL', serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;">
+      <h1 style="text-align: center;line-height: 0.85;
+    font-family: Spiegel,sans-serif;
+    font-weight: 800px;
+    letter-spacing: 0.03em;
+  ">CHAMPION</h1>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+<!--  <div class="row" style="text-align: center;">-->
+<!--    <div class="col-md-1 col-4">-->
+<!--      <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">-->
+<!--    </div>-->
+<!--  <div class="col-md-10 col-4">-->
+<!--  </div>-->
+<!--  <div class="col-md-1 col-4">-->
+<!--    <img id="helpIcon" routerLink="/guide" onmouseover="this.src='../../../assets/Images/home/helpIconHover.png'" src="/assets/Images/home/helpIcon.png" onmouseout="this.src='/assets/Images/home/helpIcon.png'">-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--  <div class="row row align-items-center fill-height" style="height: auto;justify-content: center;" >-->
+<!--    <div class= "col-md-2 align-self-center justify-content-center" style="height: auto; text-align: center">-->
+
+<!--      <img id="logo" src="/assets/Images/home/Logo.png">-->
+<!--    </div>-->
+
+
+
+<!--  </div>-->
+
+
+<!--  <div class="row align-items-center justify-content-around" style="color: white;text-align: center; font-size: x-large;">-->
+<!--    <div class="col-md-3 col-5 order-3 order-md-1">-->
+<!--       <img id="addButton"  routerLink="/addPlayer" onmouseover="this.src='../../../assets/Images/generic/addIcon_hover.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />-->
+<!--    </div>-->
+<!--    <div class="col-md-2 col-5 order-1 order-md-2">-->
+<!--      <p>Players Waiting:  {{playerWaiting}} </p>-->
+<!--    </div>-->
+<!--    <div class="col-md-2 col-5 order-2 order-md-3">-->
+<!--      <p>Listed Players: {{playersListed}}</p>-->
+<!--    </div>-->
+<!--    <div class="col-md-3 col-5 order-4 order-md-4">-->
+<!--      <img id="searchButton" routerLink="/search" onmouseover="this.src='../../../assets/Images/generic/searchIcon_hover.png'" src="../../../assets/Images/generic/searchIcon.png" onmouseout="this.src='/assets/Images/generic/searchIcon.png'" />-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
 
-  <div class="row row align-items-center fill-height" style="height: auto;justify-content: center;" >
-    <div class= "col-md-2 align-self-center justify-content-center" style="height: auto; text-align: center">
-
-      <img id="logo" src="/assets/Images/home/Logo.png">
-    </div>
-
-
-
-  </div>
-
-
-  <div class="row align-items-center justify-content-around" style="color: white;text-align: center; font-size: x-large;">
-    <div class="col-md-3 col-5 order-3 order-md-1">
-       <img id="addButton"  routerLink="/addPlayer" onmouseover="this.src='../../../assets/Images/generic/addIcon_hover.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />
-    </div>
-    <div class="col-md-2 col-5 order-1 order-md-2">
-      <p>Players Waiting:  {{playerWaiting}} </p>
-    </div>
-    <div class="col-md-2 col-5 order-2 order-md-3">
-      <p>Listed Players: {{playersListed}}</p>
-    </div>
-    <div class="col-md-3 col-5 order-4 order-md-4">
-      <img id="searchButton" routerLink="/search" onmouseover="this.src='../../../assets/Images/generic/searchIcon_hover.png'" src="../../../assets/Images/generic/searchIcon.png" onmouseout="this.src='/assets/Images/generic/searchIcon.png'" />
-
+<div class="container-fluid d-flex vh-100 flex-column">
+  <div class="row">
+    <div class="col-xl-3">
+      <h1>Choose what you want</h1>
     </div>
 
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 
@@ -132,6 +235,162 @@
 
 </body>
 
+<div class="container-fluid d-flex vh-70 flex-column">
+  <div class="row" style="justify-content: center;">
+    <div class="col-xl-3" style="text-align: center">
+      <h1>Choose what you want</h1>
+    </div>
 
+  </div>
 
+  <div class="row">
+    <div class="col-xl-4">
+       <img id="imagesShow" src="/assets/Images/home/About me page.png">
+    </div>
+    <div class="col-xl-4">
+      <img id="imagesShow" src="/assets/Images/home/About me page.png">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-4">
+      <h1>Create a Room</h1>
+    </div>
+    <div class="col-xl-4">
+      <h1>Search</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-4">
+      <p>Let the website search a team for you by entering your data</p>
+    </div>
+    <div class="col-xl-4">
+      <p>Search manualy your team with a list of all players that are on the website</p>
+    </div>
+  </div>
+</div>
 
+<div class="container-fluid d-flex flex-column" style="height: 90%;background-color: black">
+ <div class="row" style="color: white">
+   <div class="col-xl-8">
+    <div class="row">
+     <div class="col-12">
+       <h1>Enter your Data to Create a Room!</h1>
+     </div>
+   </div>
+     <div class="row">
+       <div class="col-12">
+         <p>In this room tou can wait to be selected by another player or automaticly search with a simple click of a button</p>
+       </div>
+     </div>
+   </div>
+
+   <div class="col-xl-4">
+    <div class="col-xl-12">
+      <img  src="/assets/Images/generic/bannermaster.png" style="max-height: 400px">
+    </div>
+
+   </div>
+
+ </div>
+
+  <div class="row">
+    <div class="col-xl-4">
+      <div class="col-xl-12">
+        <img  src="/assets/Images/generic/bannermaster.png" style="max-height: 400px">
+      </div>
+    </div>
+    <div class="col-xl-8" style="color: white">
+      <p>Start waiting and chose diferent preferences for selecting your future team</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid d-flex flex-column" style="height: 50%">
+ <div class="row">
+   <div class="col-xl-8">
+     <h1>Use the "Fast Search" button to let the website search a team for you</h1>
+
+   </div>
+   <div class="col-xl-4">
+     <img  src="/assets/Images/generic/bannermaster.png" style="max-height: 400px">
+
+   </div>
+ </div>
+</div>
+
+<div class="container-fluid d-flex flex-column" style="height: 70%; background-color: black">
+  <div class="row">
+    <div class="col-xl-10">
+      <img  src="/assets/Images/generic/bannermaster.png" style="max-height: 400px">
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xl-10" style="color: white">
+      <h1>Join other players and talk to them!</h1>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid d-flex flex-column" style="height: 100%">
+  <div class="row" style="justify-content: center">
+    <div class="col-xl-10" style="text-align: center">
+      <h1>START NOW!</h1>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-4">
+         <img id="imagesShow" src="/assets/Images/home/About me page.png">
+     </div>
+    <div class="col-xl-4">
+      <img id="imagesShow" src="/assets/Images/home/About me page.png">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-4" style="text-align: center">
+      <p>Create Room</p>
+    </div>
+    <div class="col-xl-4" style="text-align: center">
+      <p>Search player</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-10" style="text-align: center">
+      <p></p>
+
+    </div>
+
+  </div>
+
+  <div class="row" style="background-color: black">
+    <div class="col-md-12" style="    display: flex;justify-content: center; place-content: space-evenly;color: white;padding-top: 10px">
+      <div>
+        <a href="https://www.patreon.com/Fabio_Heitor100?fan_landing=true" target="_blank">
+          <img id="patreon"  src="../../../assets/Images/generic/patreon.png"/>
+        </a>
+      </div>
+      <div style="text-align: center;">
+        <a href="https://twitter.com/LoTogether" target="_blank">
+          <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
+        </a>
+        <p>LoL Together</p>
+      </div>
+      <div style="text-align: center;">
+        <a href="https://twitter.com/FbioHeitor3" target="_blank">
+          <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
+        </a>
+        <p>FH Creator</p>
+      </div>
+      <div>
+        <a href="https://www.instagram.com/fabioheitor_projects/" target="_blank">
+          <img id="instagram" src="../../../assets/Images/generic/instagram.png"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

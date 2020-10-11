@@ -12,68 +12,84 @@
 
 <body>
 
-<div class="container-fluid vh-100">
-  <div class="row">
-    <div class="col-md-1 col-sm-12">
-          <img id="menuIcon"  (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
-    </div>
-  </div>
-  <div class="row ">
-    <div class="col-md-8 ">
-     <div class="row justify-content-center">
-        <div class="justify-content-center">
-          <img id="image" src="../../../assets/Images/profile/Banner FHCreator.png"/>
+<div id="page" class="container-fluid d-flex vh-100 flex-column">
+  <div class="row" style="justify-content: space-between;">
+    <div class="col-md-2 col-xl-1 col-lg-2 col-12">
+      <div class="row">
+        <div class="col-md-12 col-12" style="text-align: center;">
+          <img id="homeButton"  (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/HomeButtonNormal.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
         </div>
-     </div>
-      <div class="row" style="text-align: center; justify-content: center; color: white; padding-left: 10px;padding-right: 10px; display: table">
-        <h1>Hi there!</h1>
-        <p>My name is Fábio Heitor, i am portuguese, 26 years old and i started to learn web development 6 months ago.</p>
-
-        <p>I got an internship at a Wev Dev company where i started to like and enjoy translating my ideas to the screen</p>
-            <p>This was my first real website project, where i did everything, from design to logic functions</p>
-            <p>My goal is to create good and useful applications and websites to help people and giving them some fun to change their day</p> <br>
-
-            <h1>About the project:</h1>
-
-            <p>When i was playing with my friends, alot of the times, we had one player less to play flex 5v5, and we sometimes stop playing because of that, so i decided to use my skills at web dev to create an application that could find players</p>
-            <p>In this website, you can find other players to play with, from solo duo to team vs team</p> <br>
-
-            <p>HAVE FUN IN THIS PROJECT!</p>
       </div>
     </div>
-    <div class="col-md-4 justify-content-center" style="margin-top: auto;text-align: center; display: flex;align-items: flex-end;">
-      <img id="banner" src="../../../assets/Images/profile/bannerupside.png"/>
 
-        <div id="buttonZoneProfile">
+    <div class="col-md-8 col-xl-10 col-lg-8">
+      <div class="row">
+        <div class="col-md-12" style="    display: flex;justify-content: center; place-content: space-evenly;color: white;padding-top: 10px">
+          <div>
+            <a href="https://www.patreon.com/Fabio_Heitor100?fan_landing=true" target="_blank">
+              <img id="patreon"  src="../../../assets/Images/generic/patreon.png"/>
+            </a>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://twitter.com/LoTogether" target="_blank">
+              <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
+            </a>
+            <p>LoL Together</p>
+          </div>
+          <div style="text-align: center;">
+            <a href="https://twitter.com/FbioHeitor3" target="_blank">
+              <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
+            </a>
+            <p>FH Creator</p>
+          </div>
+          <div>
+            <a href="https://www.instagram.com/fabioheitor_projects/" target="_blank">
+              <img id="instagram" src="../../../assets/Images/generic/instagram.png"/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
-                <a href="https://www.patreon.com/Fabio_Heitor100?fan_landing=true" target="_blank">
-                  <img id="patreon"  src="../../../assets/Images/generic/patreon.png"/>
-                </a>
+      <div class="col-md-2 col-xl-1 col-lg-2 col-3">
+      </div>
 
-                   <a href="https://twitter.com/LoTogether" target="_blank">
-                  <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
-                    </a>
-                  <p>LoL Together</p>
+  </div>
 
-          <a href="https://twitter.com/FbioHeitor3" target="_blank">
-                  <img id="twitter" src="../../../assets/Images/generic/twitter.png" />
-                    </a>
-                  <p>FH Creator</p>
+  <div class="row" id="page">
+    <div class="col-md-12 ">
+     <div class="row justify-content-center">
+       <div class="col-md-6 col-lg-6 col-xl-4">
+         <img id="image" src="../../../assets/Images/profile/Banner FHCreator.png"/>
+       </div>
 
-          <a href="https://www.instagram.com/fabioheitor_projects/" target="_blank">
-                  <img id="instagram" src="../../../assets/Images/generic/instagram.png"/>
-                    </a>
+     </div>
+      <div class="row">
+        <div class="col-md-12" style="color: white;text-align: center;justify-content: center;">
+          <h1>Hi there!</h1>
+          <p>My name is Fábio Heitor, i am portuguese, 26 years old and i started to learn web development 6 months ago.</p>
 
-          <h1>CHECK IT OUT!</h1>
+          <p>I got an internship at a Wev Dev company where i started to like and enjoy translating my ideas to the screen.</p>
+          <p>This was my first real website project, where i did everything, from design to logic functions.</p>
+          <p>My goal is to create good and useful applications and websites to help people and giving them some fun to change their day.</p> <br>
 
+          <h1>About the project:</h1>
 
+          <p>When i was playing with my friends, alot of the times, we had one player less to play flex 5v5, and we sometimes stop playing because of that, so i decided to use my skills at web dev to create an application that could find players.</p>
+          <p>In this website, you can find other players to play with, from solo duo to team vs team.</p> <br>
 
+          <h1>HAVE FUN IN THIS PROJECT!</h1>
+        </div>
 
-             </div>
+      </div>
+    </div>
+
     </div>
   </div>
-</div>
+
+
+
 
 
 
