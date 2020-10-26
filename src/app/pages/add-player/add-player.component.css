@@ -9,7 +9,7 @@ body{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: black;
+  background-color: #034078;
 }
 
 .container-fluid{
@@ -96,9 +96,45 @@ div{
   height: 50px;
 }
 
+#playerTag{
+  visibility: hidden;
+  height: 1%;
+}
+
+
 @media screen and (min-width: 601px) and (max-width: 1150px) {
 
+  #lowerButtons{
+    width: 264px !important;
+  }
 
+
+
+}
+
+
+@media screen and (max-width: 601px) {
+
+  #playerBanner{
+    background-image: none !important;
+    background-color: #034078 !important;
+    min-height: 200px !important;
+  }
+
+  #customButtons{
+    padding-top: 10px !important;
+
+  }
+
+  #playerTag{
+    visibility: visible;
+    margin-top: 10px;
+    height: auto;
+  }
+
+  #backButton{
+    padding-top: 10px !important;
+  }
 
 
 }

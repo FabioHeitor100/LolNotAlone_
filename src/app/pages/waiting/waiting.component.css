@@ -1,14 +1,15 @@
 body{
   width: 100%;
   height: 100%;
-  background-image:url("/assets/Images/waiting/background2.jpg");
-  background-position: center;
-  /*background-size: 100% 100%;*/
-  background-size: cover;
+  /*background-image:url("/assets/Images/addPlayer/background1.jpg");*/
+  /*background-position: center;*/
+  /*!*background-size: 100% 100%;*!*/
+  /*background-size: cover;*/
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: #034078;
 
 }
 
@@ -16,8 +17,16 @@ body{
   height: 100%;
 }
 
-div{
+#homeButton{
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
 
+div{
+  border: yellow 1px solid;
 }
 
 #menuIcon{
@@ -37,6 +46,9 @@ div{
 #backButton{
   width: 100%;
   height: auto;
+  max-width: 70px;
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
 .banner{
   width: 100%;
@@ -81,6 +93,52 @@ div{
 #roleImg{
   width: 25%;
   height: auto;
+}
+
+#playerTag{
+  visibility: hidden;
+  height: 1%;
+}
+
+@media screen and (max-width: 1000px) {
+   #customZone{
+     height: auto !important;
+   }
+
+  #chat{
+    height: 100% !important;
+    padding-top: 10px !important;
+  }
+}
+
+@media screen and (max-width: 601px) {
+
+  #playerZone{
+    display: grid !important;
+  }
+  #playerBanner{
+    background-image: none !important;
+    background-color: #034078 !important;
+    min-height: 200px !important;
+  }
+
+  #customButtons{
+    padding-top: 10px !important;
+
+  }
+
+  #playerTag{
+    visibility: visible;
+    margin-top: 10px;
+    height: auto;
+  }
+
+  #chat{
+    min-height:250px
+  }
+
+
+
 }
 
 /*#upperZone2{*/

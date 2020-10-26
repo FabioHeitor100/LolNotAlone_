@@ -1,37 +1,48 @@
 <body>
   <div class="container-fluid d-flex vh-100 flex-column">
 
-    <div class="row fill-height" style="justify-content: space-between;">
-      <div class="col-xl-1 col-lg-2 col-md-12 col-12 col-sm-12">
+    <div class="row fill-height" style="justify-content: space-between;background-color: #034078">
+      <div class="col-xl-1 col-lg-12 col-md-12 col-12 col-sm-12">
         <div class="row">
           <div class="col-md-12 col-12"  style="text-align: center;">
-            <img id="homeButton"  (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/HomeButtonNormal.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+            <img id="homeButton"  (click)="toggleRightSidenav()" onmouseover="this.src='/assets/Images/generic/LogoHover.png'" src="/assets/Images/generic/HomeButtonNormal.png" onmouseout="this.src='/assets/Images/generic/HomeButtonNormal.png'">
           </div>
         </div>
       </div>
-      <div class="col-xl-10 col-md-12 col-12">
-        <div class="row" style="height: 100%;justify-content: center;min-height: 600px;">
+      <div class="col-xl-10 col-lg-12 col-md-12 col-12">
+        <div id="playerBanner" class="row" style="height: 100%;justify-content: center;min-height: 600px;">
 
 
-        <div class="col-lx-3 col-md-2 col-12" *ngFor="let player of team;let i=index" style="max-width: 300px;background-repeat: no-repeat;background-size: 100% auto;height:auto;background-image: url('/../../assets/Images/generic/banner{{player.rank}}.png')">
+        <div id="playerBanner" class="col-lx-2 col-lg-4 col-md-5 col-12" *ngFor="let player of team;let i=index" style="max-width: 300px;min-height: 570px;background-repeat: no-repeat;background-size: 100% auto;height:auto;background-image: url('/assets/Images/generic/banner{{player.rank}}.png')">
 <!--          <img class="banner" src="../../../assets/Images/generic/banner{{player.rank}}.png" style="position: absolute;top: 0;left: 0;"/>-->
-          <div class="col-xl-12" style="height: 100%">
 
 
-          <div class="row " style="justify-content: center;align-self: center;">
+
+          <div id="playerTag" class="row" style="justify-content: center;align-self: center;">
+            <div class="col-md-10">
+              <h1 style="text-align: center; color: #61c4d1">Player&nbsp;{{i+1}}</h1>
+            </div>
+          </div>
+
+          <div id="customButtons" class="row" style="justify-content: center;align-self: center; padding-top: 45px">
                             <div class="col-md-10">
-                              <input type="text" class="form-control" placeholder="Summoner Name" style="text-align: center;text-align-last: center; background-color: #32434c;color: #00899c;border: solid 1px #00899c" (change)="updatePlayerSumonerName($event,i)">
+                              <input type="text" class="form-control" placeholder="Summoner Name" style="text-align: center;text-align-last: center; background-color: #001f54;color: #1282a2;border: solid 1px #1282a2" (change)="updatePlayerSumonerName($event,i)">
                             </div>
                           </div>
+          <div id="customButtons" class="row" style="justify-content: center;align-self: center; padding-top: 5px">
+            <div class="col-md-10" style="text-align: center">
+              <p style="color: #61c4d1">Please, write your name right</p>
+            </div>
+          </div>
 
 
 
-                          <div class="row" style="justify-content: center;align-self: center;">
+                          <div id="customButtons" class="row" style="justify-content: center;align-self: center;padding-top: 200px">
                             <div class="col-md-10">
-                              <select  class="custom-select" (change)="updatePlayerRank($event,i)"  style="text-align-last: center;background-color: #32434c;color: #00899c;border: solid 1px #00899c">
+                              <select  class="custom-select" (change)="updatePlayerRank($event,i)"  style="text-align-last: center;background-color: #001f54;color: #1282a2;border: solid 1px #1282a2">
                                 <option selected disabled value>Rank</option>
                                 <option value="iron">
-                                  <img src="/assets/Images/waiting/iron.png" height="20" width="20" style="vertical-align: text-bottom"/>
+                                  <img src="/assets/Images/waiting/iron.png" onerror="this.src='';" height="20" width="20" style="vertical-align: text-bottom"/>
 
                                   Iron</option>
                                 <option value="bronze">
@@ -71,9 +82,9 @@
                             </div>
                           </div>
 
-                          <div class="row" style="justify-content: center;">
+                          <div id="customButtons" class="row" style="justify-content: center; padding-top: 10px">
                             <div class="col-md-10">
-                              <select  class="custom-select" (change)="updatePlayerRole($event,i)" style="text-align-last: center;background-color: #32434c;color: #00899c;border: solid 1px #00899c" >
+                              <select  class="custom-select" (change)="updatePlayerRole($event,i)" style="text-align-last: center; background-color: #001f54;color: #1282a2;border: solid 1px #1282a2" >
                                                 <option selected disabled value>Role</option>
                                                 <option value="top">
                                                                               Top</option>
@@ -95,10 +106,10 @@
                                               </select>
 
                             </div>
-                          </div>
 
-                          <div class="row" style="justify-content: center;align-items: center;">
-                            <div class="col-md-3 col-3">
+
+                          <div id="customButtons" class="row" style="justify-content: center;align-items: center;padding-top: 15px">
+                            <div class="col-lg-2 col-md-2 col-2">
                               <img (click)="deletePlayer(i)" style="width: 100%; height: auto" src="../../../assets/Images/addPlayer/deleteIcon.png" />
 
                             </div>
@@ -207,23 +218,36 @@
 <!--          </div>-->
 <!--        </div>-->
 <!--      </div>-->
-      <div class="col-xl-1 col-md-12 col-12">
-       <img id="addButton"  *ngIf="team.length <5" (click)="increaseTeam()" onmouseover="this.src='../../../assets/Images/addPlayer/addIcon_hover1.png'" src="../../../assets/Images/generic/addIcon.png" onmouseout="this.src='/assets/Images/generic/addIcon.png'" />
+      <div class="col-xl-1 col-md-12 col-12" style="background-color: #034078">
 
       </div>
 
 
     </div>
-    <div class="row">
-      <div class="col-md-2 col-12">
+
+    <div class="row" style="justify-content: center;background-color: #034078">
+      <div class="col-md-4 col-10" style="color: #61c4d1;text-align: center;">
+        <p>Enter your data to create a room</p>
+      </div>
+
+    </div>
+
+    <div class="row" style="justify-content: center;background-color: #034078">
+      <div class="col-md-6 col-sm-10 col-12" style="max-width: 300px">
+        <button *ngIf="team.length <5" (click)="increaseTeam()" mat-raised-button style="background-color: #001f54;color: #1282a2;border: solid 1px #1282a2;width: 100%">Add Player</button>
+      </div>
+
+    </div>
+    <div class="row" style="background-color: #034078">
+      <div class="col-md-2 col-10">
 
       </div>
 
     </div>
-    <div class="row" style="justify-content: center;">
-      <div class="col-md-2 col-12">
+    <div class="row" style="justify-content: center; padding-top-top: 10px ;background-color: #034078;">
+      <div class="col-md-10 col-12" style="max-width: 300px" >
         <label id="zoneButton">
-          <select  class="custom-select" (change)="updatePlayerZone($event)" style="text-align-last: center; background-color: #32434c;color: #00899c;border: solid 1px #00899c">
+          <select  class="custom-select" (change)="updatePlayerZone($event)" style="text-align-last: center; background-color: #001f54;color: #1282a2;border: solid 1px #1282a2">
             <option selected disabled value>Region</option>
             <option value="br">BR</option>
             <option value="eune">EUNE</option>
@@ -240,19 +264,25 @@
         </label>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xl-1 col-lg-2 col-md-1 col-12">
+
+    <div class="row" style="justify-content: center;background-color: #034078">
+      <div class="col-md-6 col-sm-10 col-12" style="max-width: 300px">
+        <button id="waitingButton" *ngIf="teamValid" mat-raised-button routerLink="/waiting" (click)="placeOnTheList()" style="background-color: #0692a6;color: #001f54;border: solid 1px #001f54;">Waiting Room</button>
+
+      </div>
+    </div>
+    <div class="row" style="background-color: #034078">
+      <div class="col-xl-1 col-lg-2 col-md-3 col-3">
           <div class="row">
-            <div class="col-md-12 col-12">
-              <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="/assets/Images/generic/BackIconNormal.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>
+            <div class="col-md-12 col-12 order-2">
+              <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/generic/BackIconHover.png'" src="/assets/Images/generic/BackIconNormal.png" onmouseout="this.src='/assets/Images/generic/BackIconNormal.png'"/>
             </div>
           </div>
       </div>
-      <div class="col-md-8 col-12">
+      <div class="col-md-8 col order-3" style="background-color: #034078">
 
       </div>
-      <div class="col-md-3 col-12">
-        <button id="waitingButton" *ngIf="teamValid" mat-raised-button routerLink="/waiting" (click)="placeOnTheList()" style="background-color: #32434c;color: #00899c; border: #00899c; width: 70%; border: #00899c 2px solid">Waiting Room</button>
+      <div class="col-lg-5 col-md-9 col-8" style="background-color: #034078;text-align: center;">
 
       </div>
     </div>

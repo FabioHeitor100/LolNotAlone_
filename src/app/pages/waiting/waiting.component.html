@@ -1,40 +1,60 @@
 <body>
   <div class="container-fluid d-flex vh-100 flex-column">
     <div class="row fill-height" style="justify-content: space-between;">
-      <div class="col-md-1 col-3" id="menuCol">
+      <div class="col-xl-1 col-lg-12 col-md-12 col-12 col-sm-12">
         <div class="row">
-          <div class="col-md-12 col-12">
-            <img id="menuIcon" (click)="toggleRightSidenav()" onmouseover="this.src='../../../assets/Images/generic/menuIcon_hover.png'" src="/assets/Images/generic/menuIcon.png" onmouseout="this.src='/assets/Images/generic/menuIcon.png'">
+          <div class="col-md-12 col-12" style="text-align: center;">
+            <img id="homeButton"  (click)="toggleRightSidenav()" onmouseover="this.src='/assets/Images/generic/LogoHover.png'" src="/assets/Images/generic/HomeButtonNormal.png" onmouseout="this.src='/assets/Images/generic/HomeButtonNormal.png'">
           </div>
         </div>
       </div>
 
 
-    <div *ngIf="actualTeamVisible" class="col-md-10 col-6" style="height: 100% ;     display: flex;justify-content: center;">
+    <div id="playerZone" *ngIf="actualTeamVisible" class="col-xl-10 col-lg-12 col-md-12 col-12" style="height: 100%;justify-content: center;display:flex">
 
-      <div class="col-md-3 col-5" style="" *ngFor="let player of actualTeam" id="bannerCol">
-        <img class="banner" src="../../../assets/Images/generic/banner{{player.rank || player.teamRank}}.png" style="position: absolute;top: 0;left: 0;"/>
-        <div id="buttonZone" style="position: absolute; width: 100%;text-align: center;top: 0;left: 0; display: flex;
-    flex-direction: column;
-    place-content: center;
-    justify-content: space-evenly;height: 70%;" >
-          <div id="rankZone">
-            Actual team
-                      <img id="rankImage" src="../../../assets/Images/waiting/{{player.rank || player.teamRank}}.png"/>
-                    </div>
+      <div id="playerBanner" class="col-lx-2 col-lg-4 col-md-5 col-12" style="max-width: 300px;min-height: 570px;background-repeat: no-repeat;background-size: 100% auto;height:auto;background-image: url('/../../assets/Images/generic/banner{{player.rank || player.teamRank}}.png')" *ngFor="let player of actualTeam;let i=index">
+        <div id="playerTag" class="row" style="justify-content: center;align-self: center;">
+            <div class="col-md-10">
+              <h1 style="text-align: center; color: #61c4d1">Player&nbsp;{{i+1}}</h1>
+            </div>
+          </div>
 
-                    <div id="summonerName">
-                      <p style="font-family: beaufort, serif; font-weight: bold;">{{player.summonerName}}</p>
-                    </div>
-
-                        <div id="playerRole">
-                          <img id="roleImg" src="../../../assets/Images/waiting/{{player.role}}.png"/>
-                        </div>
+        <div id="customButtons" class="row" style="justify-content: center;align-self: center; padding-top: 50px; color: yellow">
+          <div class="col-md-10" style="text-align: center;">
+            <p style="font-family: beaufort, serif; font-weight: bold;">{{player.summonerName}}</p>
+          </div>
         </div>
-      </div>
+
+        <div id="customButtons" class="row" style="justify-content: center;align-self: center; padding-top: 290px">
+          <div class="col-md-10" style="text-align: center">
+            <img id="roleImg" src="../../../assets/Images/waiting/{{player.role}}.png"/>
+
+          </div>
+        </div>
+
+<!--  <img class="banner" src="../../../assets/Images/generic/banner{{player.rank || player.teamRank}}.png" style="position: absolute;top: 0;left: 0;"/>&ndash;&gt;-->
+<!--        <div id="buttonZone" style="position: absolute; width: 100%;text-align: center;top: 0;left: 0; display: flex;-->
+<!--    flex-direction: column;-->
+<!--    place-content: center;-->
+<!--    justify-content: space-evenly;height: 70%;" >-->
+<!--          <div id="rankZone">-->
+<!--            Actual team-->
+<!--                      <img id="rankImage" src="../../../assets/Images/waiting/{{player.rank || player.teamRank}}.png"/>-->
+<!--                    </div>-->
+
+<!--                    <div id="summonerName">-->
+<!--                      <p style="font-family: beaufort, serif; font-weight: bold;">{{player.summonerName}}</p>-->
+<!--                    </div>-->
+
+<!--                        <div id="playerRole">-->
+<!--                          <img id="roleImg" src="../../../assets/Images/waiting/{{player.role}}.png"/>-->
+<!--                        </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
     </div>
-      <div *ngIf="!actualTeamVisible" class="col-md-10 col-6" style="height: 100% ;     display: flex;justify-content: center;">
+    </div>
+      <div id="customZone" *ngIf="!actualTeamVisible" class="col-md-10 col-6" style="height: 100% ;display: flex;justify-content: center;">
 
         <div class="col-md-3 col-12" style="" *ngFor="let player of finalTeam" id="bannerCol">
           <img class="banner" src="../../../assets/Images/generic/banner{{player.rank || player.teamRank}}.png" style="position: absolute;top: 0;left: 0;"/>
@@ -65,76 +85,163 @@
     </div>
   </div>
 
+    <div class="row" style=" height: 100%;max-height:300px; background-color: #034078">
+      <div class="col-xl-1 col-lg-2 col-md-2 col-3" style="align-self: flex-end;">
+        <div class="row">
 
-
-  <div class="row" style="justify-content: center; height: 100%;max-height:300px;">
-
-    <div class="col-md-1 col-2" style="align-self: flex-end;">
-      <div class="row">
-
-      </div>
-      <div class="row" >
-        <div class="col-md-12 col-12" style="align-self: flex-end;">
-              <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/addPlayer/backButton_hover1.png'" src="../../../assets/Images/generic/backButton.png" onmouseout="this.src='/assets/Images/generic/backButton.png'"/>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-12" style="align-self: flex-end;">
+            <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/generic/BackIconHover.png'" src="/assets/Images/generic/BackIconNormal.png" onmouseout="this.src='/assets/Images/generic/BackIconNormal.png'"/>
+          </div>
         </div>
       </div>
 
-    </div>
-    <div class="col-md-6 col-8" style="display: grid;align-items: center;">
-      <div class="row" >
-        <div class="col-md-4 col-12">
-          <select *ngIf="duoVisible"  class="custom-select" (change)="updateLanePreference($event)" style="text-align-last: center;">
-            <option selected disabled value>Role</option>
-            <option value="top"> top</option>
-            <option value="jungle"> jungle</option>
-            <option value="mid"> mid</option>
-            <option value="bot"> bot</option>
-            <option value="support"> support</option>
-            <option value="fill"> fill</option>
-          </select>
+      <div class="col-md-8 col-sm-12 col-12" style="height: 96%;display: grid;align-content: center;background-color: #034078">
 
+        <div class="row">
+          <div class="col-3" style="text-align: center; color: #61c4d1">
+
+          </div>
+          <div class="col-xl-6 col-md-12 col-12" style="text-align: center; color: #61c4d1">
+            <div class="row">
+              <div class="col-12">
+                <p>Chose your game mode.Then apply start waiting.</p>
+                <p>After that you will be able to fast search</p>
+              </div>
+            </div>
+            <div class="row" style="justify-content: center;">
+              <div class="col-lg-6" style="text-align: center;">
+                <select  class="custom-select" (change)="updateMatchType($event)" style="text-align-last: center;background-color: #001f54;color: #1282a2;border: solid 1px #1282a2; max-width: 300px">
+                  <option selected disabled value>Game Mode</option>
+                  <option style="font-family: beaufort, serif;" value="duo" *ngIf="duoVisible">Rank Solo duo</option>
+                  <option value="flex3" *ngIf="trioVisible">Rank Flex 3</option>
+                  <option value="flex5" *ngIf="flexVisible">Rank Flex 5</option>
+                  <option style="font-family: beaufort, serif;" value="1v1" *ngIf="duoVisible">1v1</option>
+                  <option value="5v5" *ngIf="fiveVsFive">5 v 5</option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="row" style="justify-content: center;padding-top: 10px">
+              <div class="col-lg-6" style="text-align: center;">
+                <button mat-raised-button [disabled]="!waitingStatus" id="fastSearchButton" style="background-color: #0692a6;color: #001f54;border: solid 1px #001f54;max-width: 300px" (click)="startFastSearch(matchType)"> Fast Search</button>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-xl-3 col-md-12 col-12" style="text-align: center; color: #61c4d1;align-self: center;">
+            <div class="row" style="justify-content: center">
+              <div class="col-xl-3 col-lg-1 col-md-2 col-2">
+                <img id="light" *ngIf="waitingStatus" src="../../../assets/Images/greenlight.png"/>
+                <img id="light" *ngIf="!waitingStatus" src="../../../assets/Images/redlight.png"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <button mat-raised-button *ngIf="matchType && !waitingStatus" id="waitingButton" (click)="startWaiting()" style="background-color: #001f54;color: #1282a2;border: solid 1px #1282a2;max-width: 300px"> Waiting</button>
+                <button mat-raised-button *ngIf="matchType && waitingStatus" id="waitingButton"  (click)="stopWaiting()"  style="background-color: #001f54;color: #1282a2;border: solid 1px #1282a2;max-width: 300px"> Stop waiting</button>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="col-md-4 col-12">
-          <select  class="custom-select" (change)="updateMatchType($event)" style="text-align-last: center;">
-            <option selected disabled value>Game Mode</option>
-            <option style="font-family: beaufort, serif;" value="duo" *ngIf="duoVisible">Rank Solo duo</option>
-            <option value="flex3" *ngIf="trioVisible">Rank Flex 3</option>
-            <option value="flex5" *ngIf="flexVisible">Rank Flex 5</option>
-            <option value="5v5" *ngIf="fiveVsFive">5 v 5</option>
-          </select>
 
 
-        </div>
-        <div class="col-md-4">
-          <button mat-raised-button *ngIf="matchType" id="waitingButton" (click)="startWaiting()"> Waiting</button>
-        </div>
       </div>
-      <div class="row">
-        <div class="col-md-4">
 
-        </div>
-        <div class="col-md-4">
-                  <button mat-raised-button [disabled]="!waitingStatus" id="fastSearchButton" (click)="startFastSearch(matchType)"> Fast Search</button>
-        </div>
-        <div class="col-md-4">
-          <button mat-raised-button *ngIf="matchType" id="waitingButton" (click)="stopWaiting()"> Stop waiting</button>
-        </div>
+      <div class="col-xl-3 col-md-12" id="chat" style="background-color: #034078">
+        <app-team-room id="room"></app-team-room>
       </div>
 
-
-    </div>
-    <div class="col-md-1 col-2" style="align-self: center;">
-      <img id="light" *ngIf="waitingStatus" src="../../../assets/Images/greenlight.png"/>
-      <img id="light" *ngIf="!waitingStatus" src="../../../assets/Images/redlight.png"/>
-    </div>
-    <div id="roomCol" class="col-md-4 col-12" style="justify-content: center">
-      <app-team-room id="room"></app-team-room>
     </div>
 
+<!--  <div class="row" style="justify-content: center; height: 100%;max-height:300px;">-->
+
+<!--    <div class="col-xl-1 col-lg-2 col-md-3 col-3" style="align-self: flex-end;">-->
+<!--      <div class="row">-->
+
+<!--      </div>-->
+<!--      <div class="row" >-->
+<!--        <div class="col-md-12 col-12 order-2" style="align-self: flex-end;">-->
+<!--          <img id="backButton" (click)="gotoBackPage()" onmouseover="this.src='../../../assets/Images/generic/BackIconHover.png'" src="/assets/Images/generic/BackIconNormal.png" onmouseout="this.src='/assets/Images/generic/BackIconNormal.png'"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--    <div class="col-md-6 col-8" style="">-->
+<!--      <div class="row">-->
+<!--        <div class="col-12" style="text-align: center; color: #61c4d1">-->
+<!--          <p>Custom zone</p>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4" style="text-align: center; color: #61c4d1">-->
+<!--          <p>Duo preference</p>-->
+<!--        </div>-->
+<!--        <div class="col-md-8" style="text-align: center; color: #61c4d1">-->
+<!--          <p>Chose your game mode.Then apply start waiting.</p>-->
+<!--          <p>After that you will be able to fast search</p>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="row" >-->
+<!--        <div class="col-md-4 col-12">-->
+<!--          <select *ngIf="duoVisible"  class="custom-select" (change)="updateLanePreference($event)" style="text-align-last: center;background-color: #001f54;color: #1282a2;border: solid 1px #1282a2">-->
+<!--            <option selected disabled value>Role</option>-->
+<!--            <option value="top"> top</option>-->
+<!--            <option value="jungle"> jungle</option>-->
+<!--            <option value="mid"> mid</option>-->
+<!--            <option value="bot"> bot</option>-->
+<!--            <option value="support"> support</option>-->
+<!--            <option value="fill"> fill</option>-->
+<!--          </select>-->
+
+<!--        </div>-->
+<!--        <div class="col-md-8 col-12" style="    text-align: center;">-->
+<!--          <select  class="custom-select" (change)="updateMatchType($event)" style="text-align-last: center;background-color: #001f54;color: #1282a2;border: solid 1px #1282a2; max-width: 300px">-->
+<!--            <option selected disabled value>Game Mode</option>-->
+<!--            <option style="font-family: beaufort, serif;" value="duo" *ngIf="duoVisible">Rank Solo duo</option>-->
+<!--            <option value="flex3" *ngIf="trioVisible">Rank Flex 3</option>-->
+<!--            <option value="flex5" *ngIf="flexVisible">Rank Flex 5</option>-->
+<!--            <option style="font-family: beaufort, serif;" value="1v1" *ngIf="duoVisible">1v1</option>-->
+<!--            <option value="5v5" *ngIf="fiveVsFive">5 v 5</option>-->
+<!--          </select>-->
+
+
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <button mat-raised-button *ngIf="matchType" id="waitingButton" (click)="startWaiting()" style="background-color: #001f54;color: #1282a2;border: solid 1px #1282a2"> Waiting</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-4">-->
+
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--                  <button mat-raised-button [disabled]="!waitingStatus" id="fastSearchButton" style="background-color: #0692a6;color: #001f54;border: solid 1px #001f54;" (click)="startFastSearch(matchType)"> Fast Search</button>-->
+<!--        </div>-->
+<!--        <div class="col-md-4">-->
+<!--          <button mat-raised-button *ngIf="matchType" id="waitingButton" style="background-color: #001f54;color: #1282a2;border: solid 1px #1282a2" (click)="stopWaiting()"> Stop waiting</button>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+<!--    </div>-->
+<!--    <div class="col-md-1 col-2" style="align-self: center;">-->
+<!--      <img id="light" *ngIf="waitingStatus" src="../../../assets/Images/greenlight.png"/>-->
+<!--      <img id="light" *ngIf="!waitingStatus" src="../../../assets/Images/redlight.png"/>-->
+<!--    </div>-->
+<!--    <div id="roomCol" class="col-md-4 col-12" style="justify-content: center">-->
+<!--      <app-team-room id="room"></app-team-room>-->
+<!--    </div>-->
 
 
 
-  </div>
+
+<!--  </div>-->
   </div>
 
 <!--<div id="upperZone2">-->

@@ -69,6 +69,8 @@ export class WaitingComponent implements OnInit {
 
   sound;
   actualTeamVisible;
+  vsLogo;
+
 
   sidenavStatus = false;
 
@@ -184,10 +186,13 @@ export class WaitingComponent implements OnInit {
 
 
     this.finalTeam = [];
+    this.allPlayers = [];
     console.log("-----------------------------------------------------");
     console.log("FINALLLLLLL TEAMMMMMM!! ", this.finalTeam);
     console.log("THIS ACTUAL TEAM!!!!! ", this.actualTeam);
     console.log(JSON.stringify(this.actualTeam));
+    console.log(JSON.stringify(this.allPlayers));
+    console.log(JSON.stringify(this.finalTeam));
     console.log("-----------------------------------------------------");
     console.log("Match type", this.matchType);
     console.log("TEAM INICIAL", this.actualTeam);
@@ -275,7 +280,7 @@ export class WaitingComponent implements OnInit {
             this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
             console.log("RANDOM NUMBER", this.randomNumber);
             this.actualTeamVisible = false;
-            this.finalTeam = this.actualTeam;
+            this.finalTeam = [...this.actualTeam];
             console.log("777777777777777777");
             console.log("TEAM FINAL ANTES:", this.finalTeam);
             this.finalTeam.push(duoPreferencePlayers[this.randomNumber]);
@@ -324,6 +329,85 @@ export class WaitingComponent implements OnInit {
 
 
 
+
+
+        console.log("88888888888888888");
+
+
+      }
+
+      if (matchType === "1v1") {
+
+        this.teamFunctionsService.getAllPlayersWaiting(this.teamZone, this.matchType).then( data => {
+          this.allPlayers = Object.keys(data.val()).map(key => data.val()[key]);
+          let oneVsOneAcceptedPlayers = [];
+          console.log("Searching duo partner");
+
+          console.log("1v1");
+          for (let players of this.allPlayers) {
+            if (players.teamPlayersNumber === 1) {
+              console.log("NOME 1: ", players.summonerName);
+              console.log("NOME Da equipa: ", this.actualTeam[0].summonerName);
+              if (players.summonerName != this.actualTeam[0].summonerName) {
+                oneVsOneAcceptedPlayers.push(players);
+              }
+
+            }
+
+
+
+
+          }
+
+          console.log("3333333333333");
+          if (oneVsOneAcceptedPlayers.length <= 0) {
+            console.log("NAO EXISTEM JOGADORES");
+            alert("No players found, wait a little or go to the search area to see if any player is online");
+            return;
+          }
+
+
+          console.log("Jogadores duo", oneVsOneAcceptedPlayers);
+          console.log("TEAM INICIAL", this.actualTeam);
+
+          let oneVsOneAceptedRankPlayers = [];
+
+          for (let players of oneVsOneAcceptedPlayers) {
+            if (players.teamRank === this.actualTeam[0].rank) {
+              console.log("44444444444444444");
+              console.log("RANK!!!!", players.teamRank);
+              oneVsOneAceptedRankPlayers.push(players);
+            }
+          }
+
+          if (oneVsOneAceptedRankPlayers.length <= 0) {
+            console.log("NAO EXISTEM JOGADORES2");
+            alert("No players found, wait a little or go to the search area to see if any player is online");
+            return;
+          }
+
+
+
+
+          console.log("LENHT", oneVsOneAceptedRankPlayers.length);
+          console.log("DUO PREFERENCE PLAYERS", oneVsOneAceptedRankPlayers);
+
+
+            this.randomNumber = Math.floor(Math.random() * this.finalPlayersSelected.length);
+            console.log("RANDOM NUMBER", this.randomNumber);
+            this.actualTeamVisible = false;
+            this.finalTeam = [...this.actualTeam];
+            console.log("777777777777777777");
+            console.log("TEAM FINAL ANTES:", this.finalTeam);
+            this.finalTeam.push(oneVsOneAceptedRankPlayers[this.randomNumber]);
+            console.log("TEAM INICIAL:", this.actualTeam);
+            console.log("TEAM FINAL:", this.finalTeam);
+
+            this.playerThatSearchedName = this.actualTeam[0].summonerName;
+            this.alertSelectedPlayers();
+            this.createRoom();
+            this.teamRoomComponent.player = this.actualTeam[0].summonerName;
+        });
 
 
         console.log("88888888888888888");
@@ -452,7 +536,7 @@ export class WaitingComponent implements OnInit {
           console.log("RANDOM NUMBER", this.randomNumber);
           this.actualTeamVisible = false;
 
-          this.finalTeam = this.actualTeam;
+          this.finalTeam = [...this.actualTeam];
           console.log("TEAM FINAL ANTES:", this.finalTeam);
           console.log("TEAM INICIAL:", this.actualTeam);
           this.finalTeam.push(this.finalPlayersSelected[this.randomNumber]);
@@ -638,7 +722,7 @@ export class WaitingComponent implements OnInit {
 
 
 
-    
+
   }
 
   toggleRightSidenav() {
